@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-5 mx-auto">
+        <div class="container mt-5">
+          <form class="bg-white p-4 rounded-5"
+          (ngSubmit)="login()" [formGroup]="formularioLogin"
+          >
+            <div class="text-center mb-3">
+              <p>Ingresa:</p>
+            </div>
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <input type="number" id="form2Example1" class="form-control" 
+              formControlName="ruc"
+              />
+              <label class="form-label" for="form2Example1">Numero de Ruc</label>
+              <span class="text-danger"
+              *ngIf="formularioLogin.controls['ruc'].errors && formularioLogin.controls['ruc'].touched"
+              >Por favor llenar el RUC</span>
+            </div>
+          
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+              <input type="password" id="form2Example2" class="form-control"
+              formControlName="password"
+              />
+              <label class="form-label" for="form2Example2">Password</label>
+              <span class="text-danger"
+              *ngIf="formularioLogin.controls['password'].errors && formularioLogin.controls['password'].touched"
+              >Por favor llenar contraseña</span>
+            </div>
+          
+            <!-- 2 column grid layout for inline styling -->
+            <div class="row mb-4">
+              <div class="col d-flex justify-content-center">
+             
+              </div>
+          
+              <div class="col">
+                <!-- Simple link -->
+                <a href="#!"> </a>
+              </div>
+            </div>
+          
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">Ingresar</button>
+          
+            <!-- Register buttons -->
+            <div class="text-center">
+              <p><a [routerLink]="['/registro']" routerLinkActive="router-link-active"  class="me-4">Registrarme</a> <a [routerLink]="['/login']">¿Olvidaste contraseña?</a></p>
+            
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
