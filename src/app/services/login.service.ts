@@ -14,11 +14,13 @@ export class LoginService {
 
   //login de autenticacion
   login(usu: Login) {
-    return this.http.post(`${this.baseUrl}Account/Login`, usu).pipe(
+    return this.http.post(`${this.baseUrl}/v1/Account/Login`, usu).pipe(
       map((resp: any) => {
        // console.log('resp =>', resp);
        //  console.log('token =>', resp.token);
          localStorage.setItem('token',resp.token)
+         
+        localStorage.setItem('usuarioData',JSON.stringify(resp))//aqui guardamos la data del usuario, mas que nada para tener su correo y usuario
       }),
     )
   }

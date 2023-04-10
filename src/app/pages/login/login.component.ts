@@ -1,3 +1,4 @@
+import { RucService } from './../../services/ruc.service';
 import { LoginService } from './../../services/login.service'
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
@@ -10,18 +11,25 @@ import Swal from 'sweetalert2'
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+
+  loading =false;
+
   formularioLogin: FormGroup = this.fb.group({
     ruc: ['', [Validators.required]],
     password: ['', [Validators.required]],
   })
 
-  constructor(private fb: FormBuilder, private loginService: LoginService,private router:Router) {}
+  constructor(private fb: FormBuilder, private loginService: LoginService,private router:Router, private rucService:RucService) {}
 
   ngOnInit(): void {
     localStorage.removeItem('token')
+    localStorage.removeItem('usuarioRuc')
+    localStorage.removeItem('usuarioData')
+    this.loading=false;
   }
 
   login() {
+    this.loading=true
     if (!this.formularioLogin.valid) {
       this.formularioLogin.markAllAsTouched()
       return
@@ -34,13 +42,15 @@ export class LoginComponent implements OnInit {
     //console.log('haber usu ->', usu)
     this.loginService.login(usu).subscribe(
       (resp) => {
-        //console.log('resp=>', resp)
+        console.log('resp=>', resp)
         Swal.fire({
           icon: 'success',
           title: 'Bienvenido',
           showConfirmButton: false,
           timer: 1500
         })
+        this.loading=false;
+        localStorage.setItem('usuarioRuc',JSON.stringify(usu.rucProveedor))//chapamos el RUC
         this.router.navigateByUrl('/dashboard/perfil')
       },
       (err) => {
@@ -51,6 +61,9 @@ export class LoginComponent implements OnInit {
           showConfirmButton: false,
           timer: 6500
         })
+        this.loading=false;
+
+        
       },
     )
   }

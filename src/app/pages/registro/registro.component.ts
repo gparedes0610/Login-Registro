@@ -10,6 +10,9 @@ import Swal from 'sweetalert2'
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
+
+
+  loading =false;
   formularioRegistrar: FormGroup = this.fb.group({
     ruc: ['', [Validators.required]],
     correo: ['', [Validators.required,Validators.email]],
@@ -20,8 +23,10 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit(): void {
     localStorage.removeItem('token')
+    this.loading=false;
   }
   registrar(){
+    this.loading=true
     if (!this.formularioRegistrar.valid) {
       this.formularioRegistrar.markAllAsTouched()
       return
@@ -42,6 +47,7 @@ export class RegistroComponent implements OnInit {
               showConfirmButton: false,
               timer: 1500
             })
+            this.loading=false;
             this.router.navigateByUrl('/login')
           },
           (err) => {
@@ -52,6 +58,7 @@ export class RegistroComponent implements OnInit {
               showConfirmButton: false,
               timer: 6500
             })
+            this.loading=false;
           },
         )
   }

@@ -1,0 +1,144 @@
+<!-- <div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">idcabecera</th>
+        <th scope="col">corden</th>
+        <th scope="col">anex_codigo</th>
+        <th scope="col">anex_descripcion</th>
+        <th scope="col">tipodocu_codigo</th>
+        <th scope="col">cserie</th>
+        <th scope="col">cnumero</th>
+        <th scope="col">nimporte</th>
+        <th scope="col">cestado</th>
+        <th scope="col">tipomon_codigo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ruc of dataRuc">
+        <th>{{ruc.idcabecera}}</th>
+        <th>{{ruc.corden}}</th>
+        <th>{{ruc.anex_codigo}}</th>
+        <th>{{ruc.anex_descripcion}}</th>
+        <th>{{ruc.tipodocu_codigo}}</th>
+        <th>{{ruc.cserie}}</th>
+        <th>{{ruc.cnumero}}</th>
+        <th>{{ruc.nimporte}}</th>
+        <th>{{ruc.cestado}}</th>
+        <th>{{ruc.tipomon_codigo}}</th>
+     
+      </tr>
+      
+    </tbody>
+  </table>
+</div> -->
+
+<section>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="idcabecera">
+        <th mat-header-cell *matHeaderCellDef>idcabecera</th>
+        <td mat-cell *matCellDef="let element">{{ element.idcabecera }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="corden">
+        <th mat-header-cell *matHeaderCellDef>corden</th>
+        <td mat-cell *matCellDef="let element">{{ element.corden }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="anex_codigo">
+        <th mat-header-cell *matHeaderCellDef>anex_codigo</th>
+        <td mat-cell *matCellDef="let element">{{ element.anex_codigo }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="anex_descripcion">
+        <th mat-header-cell *matHeaderCellDef>anex_descripcion</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.anex_descripcion }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="tipodocu_codigo">
+        <th mat-header-cell *matHeaderCellDef>tipodocu_codigo</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.tipodocu_codigo }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cserie">
+        <th mat-header-cell *matHeaderCellDef>cserie</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.cserie }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cnumero">
+        <th mat-header-cell *matHeaderCellDef>cnumero</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.cnumero }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nimporte">
+        <th mat-header-cell *matHeaderCellDef>nimporte</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.nimporte }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <!--   <mat-paginator [pageSizeOptions]="[10,15]"
+                   showFirstLastButtons
+                   >
+    </mat-paginator> -->
+
+    <mat-paginator
+    
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      showFirstLastButtons
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div>
+
+  <!-- <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+  
+     
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+  
+    
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+  
+   
+      <ng-container matColumnDef="weight">
+        <th mat-header-cell *matHeaderCellDef> Weight </th>
+        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+      </ng-container>
+  
+   
+      <ng-container matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef> Symbol </th>
+        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[10]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div> -->
+</section>

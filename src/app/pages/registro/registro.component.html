@@ -1,62 +1,96 @@
 <div class="container">
-    <div class="row">
-       <div class="col-6 mx-auto">
-        <form class="bg-white p-4 rounded-5 mt-5"
-        (ngSubmit)="registrar()" [formGroup]="formularioRegistrar"
-        >
-            <div class="text-center mb-3">
-              <p>Registrate:</p>
-            </div>
-        
-            <!-- Name input -->
-            <div class="form-outline mb-4">
-              <input type="number" id="registerName" class="form-control"
-               formControlName="ruc"
-              />
-              <label class="form-label" for="registerName">Numero de RUC</label>
-              <span class="text-danger"
-              *ngIf="formularioRegistrar.controls['ruc'].errors && formularioRegistrar.controls['ruc'].touched"
-              >Por favor llenar el RUC</span>
-              
-            </div>
-    
-        
-            <!-- Email input -->
-            <div class="form-outline mb-4">
-              <input type="email" id="registerEmail" class="form-control"
-               formControlName="correo"
-              />
-              <label class="form-label" for="registerEmail">Username</label>
-              <span class="text-danger"
-              *ngIf="formularioRegistrar.controls['correo'].errors && formularioRegistrar.controls['correo'].touched"
-              >Por favor llenar o poner un correo</span>
-              
-            </div>
-        
-            <!-- Password input -->
-            <div class="form-outline mb-4">
-              <input type="password" id="registerPassword" class="form-control" 
-               formControlName="password"
-              />
-              <label class="form-label" for="registerPassword">Contraseña</label>
-              <span class="text-danger"
-              *ngIf="formularioRegistrar.controls['password'].errors && formularioRegistrar.controls['password'].touched"
-              >Por favor llenar el campo</span>
-              
-            </div>
-        
-            <!-- Repeat Password input 
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <form
+        class="bg-white p-4 rounded-5 mt-5"
+        (ngSubmit)="registrar()"
+        [formGroup]="formularioRegistrar"
+      >
+        <div class="text-center mb-3">
+          <p>Registrate:</p>
+        </div>
+
+        <!-- Name input -->
+        <div class="form-outline mb-4">
+          <input
+            type="number"
+            id="registerName"
+            class="form-control"
+            formControlName="ruc"
+          />
+          <label class="form-label" for="registerName">Numero de RUC</label>
+          <span
+            class="text-danger"
+            *ngIf="
+              formularioRegistrar.controls['ruc'].errors &&
+              formularioRegistrar.controls['ruc'].touched
+            "
+            >Por favor llenar el RUC</span
+          >
+        </div>
+
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+          <input
+            type="email"
+            id="registerEmail"
+            class="form-control"
+            formControlName="correo"
+          />
+          <label class="form-label" for="registerEmail">Username</label>
+          <span
+            class="text-danger"
+            *ngIf="
+              formularioRegistrar.controls['correo'].errors &&
+              formularioRegistrar.controls['correo'].touched
+            "
+            >Por favor llenar o poner un correo</span
+          >
+        </div>
+
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+          <input
+            type="password"
+            id="registerPassword"
+            class="form-control"
+            formControlName="password"
+          />
+          <label class="form-label" for="registerPassword">Contraseña</label>
+          <span
+            class="text-danger"
+            *ngIf="
+              formularioRegistrar.controls['password'].errors &&
+              formularioRegistrar.controls['password'].touched
+            "
+            >Por favor llenar el campo</span
+          >
+        </div>
+
+        <!-- Repeat Password input 
             <div class="form-outline mb-4">
               <input type="password" id="registerRepeatPassword" class="form-control" />
               <label class="form-label" for="registerRepeatPassword">Repetir Contraseña</label>
             </div> -->
-        
-        
-            <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block mb-3">Registrarme</button>
-            <button type="button" class="btn btn-danger btn-block mb-3" [routerLink]="['/login']" >Cancelar</button>
-          </form>
-       </div>
-    </div>
-</div>
 
+        <ng-container *ngIf="!loading">
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-primary btn-block mb-3">
+            Registrarme
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger btn-block mb-3"
+            [routerLink]="['/login']"
+          >
+            Cancelar
+          </button>
+        </ng-container>
+
+        <ng-container *ngIf="loading">
+          <app-loading></app-loading>
+        </ng-container>
+      </form>
+    </div>
+  </div>
+</div>

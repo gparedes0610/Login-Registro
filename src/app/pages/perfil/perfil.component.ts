@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -8,9 +7,11 @@ import { Router } from '@angular/router';
 })
 export class PerfilComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit(): void {
+    
   }
  
 }

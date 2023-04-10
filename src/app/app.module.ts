@@ -9,6 +9,8 @@ import { environment } from 'src/environments/environment';
 import { PagesModule } from './pages/pages.module';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
@@ -24,7 +26,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
     FormsModule,
     ReactiveFormsModule,
     PagesModule,
-    
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
