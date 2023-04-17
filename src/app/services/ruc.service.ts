@@ -15,7 +15,8 @@ export class RucService {
     
     return this.http.get(`${this.baseUrl}/cabecera/${this.usuarioRuc}`)
    // return this.http.get(`${this.baseUrl}/cabecera`)
-    
-    
+
+   
+
   }
 }

@@ -4,6 +4,8 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { DatosUsuarioComponent } from './datos-usuario/datos-usuario.component';
+import { ConsultasComponent } from './consultas/consultas.component';
 
 const routes: Routes = [
     {
@@ -14,6 +16,12 @@ const routes: Routes = [
            
             {
                 path:'perfil',component:PerfilComponent
+            },
+            {
+                path:'datos',component:DatosUsuarioComponent
+            },
+            {
+                path:'consultas',component:ConsultasComponent
             },
             {
                 path:'**',

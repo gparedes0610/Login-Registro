@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   formularioLogin: FormGroup = this.fb.group({
     ruc: ['', [Validators.required]],
     password: ['', [Validators.required]],
+    flag:['',[Validators.required]],
   })
 
   constructor(private fb: FormBuilder, private loginService: LoginService,private router:Router, private rucService:RucService) {}
@@ -30,16 +31,18 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.loading=true
-    if (!this.formularioLogin.valid) {
-      this.formularioLogin.markAllAsTouched()
+    if (!this.formularioLogin.valid ) {
+      this.formularioLogin.markAllAsTouched();
+      this.loading =false;
       return
     }
     // console.log('form', this.formularioLogin.value)
     const usu: Login = {
       rucProveedor: this.formularioLogin.controls['ruc'].value.toString(),
       password: this.formularioLogin.controls['password'].value.toString(),
+      flaglogin: this.formularioLogin.controls['flag'].value.toString(),
     }
-    //console.log('haber usu ->', usu)
+    console.log('haber usu ->', usu)
     this.loginService.login(usu).subscribe(
       (resp) => {
         console.log('resp=>', resp)
@@ -54,7 +57,6 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/dashboard/perfil')
       },
       (err) => {
-      //  console.log('ocurrio algo mal',err)
         Swal.fire({
           icon: 'error',
           title: `${err.error.Message}`,
@@ -63,8 +65,8 @@ export class LoginComponent implements OnInit {
         })
         this.loading=false;
 
-        
       },
     )
+
   }
 }

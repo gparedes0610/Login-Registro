@@ -1,58 +1,105 @@
-<app-navbar></app-navbar>
-<div class="container">
-  <div class="row">
-    <div class="col-12 col-md-12 mx-auto mt-5 bg-white p-3 rounded-5">
-      <!-- Tabs navs -->
-      <ul class="nav nav-tabs nav-fill mb-3" id="ex1" role="tablist">
-        <li class="nav-item" role="presentation">
-          <a
-            class="nav-link active"
-            id="ex2-tab-1"
-            data-mdb-toggle="tab"
-            href="#ex2-tabs-1"
-            role="tab"
-            aria-controls="ex2-tabs-1"
-            aria-selected="true"
-            >Datos</a
-          >
-        </li>
-        <li class="nav-item" role="presentation">
-          <a
-            class="nav-link"
-            id="ex2-tab-2"
-            data-mdb-toggle="tab"
-            href="#ex2-tabs-2"
-            role="tab"
-            aria-controls="ex2-tabs-2"
-            aria-selected="false"
-            >Consultas</a
-          >
-        </li>
-      </ul>
-      <!-- Tabs navs -->
+<div class="content ">
+<div class="landing landing-light">
+<section  class="landing-hero flex align-items-center flex-column justify-content-top relative hero-animation">
+<div class="hero-inner z-2 relative">
+  <div class="flex flex-column md:align-items-center md:flex-row">
 
-      <!-- Tabs content -->
-      <div class="tab-content" id="ex2-content">
+    <div class="p-2 flex flex-row md:flex-column"><a [routerLink]="['/dashboard/datos']" >
         <div
-          class="tab-pane fade show active"
-          id="ex2-tabs-1"
-          role="tabpanel"
-          aria-labelledby="ex2-tab-1"
-        >
-          <app-datos-usuario></app-datos-usuario>
+          class="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation flex align-items-center justify-content-center">
+          <div class="flex flex-column align-items-center"><img src="../../../assets/PrimeNG_files/core-icon.svg"
+              alt="primeng templates">
+            <div class="name"><b>Datos Personales</b><span></span></div>
+          </div>
         </div>
+      </a>
+      <a href="https://designer.primeng.org/" target="_blank">
         <div
-          class="tab-pane fade"
-          id="ex2-tabs-2"
-          role="tabpanel"
-          aria-labelledby="ex2-tab-2"
-        >
-          <app-consultas></app-consultas>
+          class="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation ml-4 md:ml-0 md:mt-4 flex align-items-center justify-content-center">
+          <div class="flex flex-column align-items-center"><img src="../../../assets/PrimeNG_files/core-icon.svg"
+              alt="primeng templates">
+            <div class="name"><b>Consultar Documentos</b><span></span></div>
+          </div>
         </div>
-      </div>
-      <!-- Tabs content -->
+      </a>
+
+      <a href="https://designer.primeng.org/" target="_blank">
+        <div
+          class="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation ml-4 md:ml-0 md:mt-4 flex align-items-center justify-content-center">
+          <div class="flex flex-column align-items-center"><img src="../../../assets/PrimeNG_files/core-icon.svg"
+              alt="primeng templates">
+            <div class="name"><b>Subir documentos</b><span></span></div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="p-2 flex flex-row md:flex-column">
+      <a [routerLink]="['/dashboard/consultas']" >
+        <div
+          class="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation flex align-items-center justify-content-center">
+          <div class="flex flex-column align-items-center"><img src="../../../assets/PrimeNG_files/blocks-icon.svg"
+              alt="primeng core">
+            <div class="name"><b>Consultar Documentos</b><span></span></div>
+          </div>
+        </div>
+      </a>
+      <a href="https://primeng.org/setup">
+        <div
+          class="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation logo hidden md:flex my-4 align-items-center justify-content-center">
+          <div class="hero-box-inner text-center"><img src="../../../assets/PrimeNG_files/designer-icon.svg"
+              alt="primeng main">
+            <div class="name flex flex-column"><b class="font-bold mb-1">NEXT-GEN</b><b
+                class="font-bold">ANGULAR UI</b></div>
+          </div>
+        </div>
+      </a>
+      <a href="https://primefaces.org/primeflex/" target="_blank">
+        <div
+          class="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation flex ml-4 md:ml-0 align-items-center justify-content-center">
+          <div class="flex flex-column align-items-center"><img src="../../../assets/PrimeNG_files/designer-icon.svg"
+              alt="primeng icons">
+            <div class="name"><b>CSS Utilities</b><span>PrimeFlex CSS</span></div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="p-2 flex flex-row md:flex-column">
+      <a href="https://blocks.primeng.org/" target="_blank">
+        <div
+          class="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation flex md:ml-0 align-items-center justify-content-center">
+          <div class="flex flex-column align-items-center"><img src="../../../assets/PrimeNG_files/designer-icon.svg"
+              alt="primeng templates">
+            <div class="name"><b>Subir documentos</b><span></span></div>
+          </div>
+        </div>
+      </a>
+      <a href="https://primeng.org/icons">
+        <div
+          class="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation flex ml-4 md:ml-0 md:mt-4 align-items-center justify-content-center">
+          <div class="flex flex-column align-items-center"><img src="../../../assets/PrimeNG_files/core-icon.svg"
+              alt="primeng templates">
+            <div class="name"><b>Icon Library</b><span>200+ Icons</span></div>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://primeng.org/icons">
+        <div
+          class="hero-box w-10rem h-10rem md:w-12rem md:h-12rem animation flex ml-8 md:ml-0 md:mt-4 align-items-center justify-content-center">
+          <div class="flex flex-column align-items-center"><img src="../../../assets/PrimeNG_files/core-icon.svg"
+              alt="primeng templates">
+            <div class="name"><b>Icon Library</b><span>200+ Icons</span></div>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
 </div>
+</section>
+</div>
+</div>
 
-
+<!-- <app-footer></app-footer> -->
