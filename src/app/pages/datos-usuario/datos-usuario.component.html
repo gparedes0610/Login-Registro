@@ -1,14 +1,22 @@
-<div class="container bg-white p-3 mt-5 rounded">
-  <p>
-    Usuario : <b class="text-primary">{{usuarioData.userName}}</b>
-  </p>
-    <p>
-      Ruc : <b class="text-primary">{{ruc}}</b>
-    </p>
-    <p>
-      Correo : <b class="text-primary">{{usuarioData.email}}</b>
-    </p>
 
+<div class="h-100">
+  <div class="container bg-white p-3 mt-5 rounded">
+    <p>
+      Usuario : <b class="text-primary">{{usuarioData.userName}}</b>
+    </p>
+      <p>
+        Ruc : <b class="text-primary">{{ruc}}</b>
+      </p>
+      <p>
+        Correo : <b class="text-primary">{{usuarioData.email}}</b>
+      </p>
+      <div class="row">
+        <div class="col-12 col-md-3">
+          <button class="btn btn-brand-02 btn-block mt-4" [routerLink]="['/dashboard/perfil']">Regresar</button>
+        </div>
+      </div>
+  
+  </div>
 </div>
 
 <!-- <p-dropdown [options]="cities" [(ngModel)]="selectedCity" optionLabel="name"></p-dropdown>

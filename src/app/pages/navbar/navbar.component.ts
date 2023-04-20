@@ -11,9 +11,12 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  userOn:string=localStorage.getItem('token')
+
   constructor(private router:Router) { }
 
   ngOnInit(): void {
+    console.log('ver useron',this.userOn)
   }
   salir(){
     localStorage.removeItem('token')

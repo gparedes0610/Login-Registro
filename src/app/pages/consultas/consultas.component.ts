@@ -19,7 +19,7 @@ export class ConsultasComponent implements OnInit    {
   constructor(private rucService: RucService) {
   }
 
-  displayedColumns: string[] = ['idcabecera', 'corden', 'anex_codigo', 'anex_descripcion','tipodocu_codigo','cserie','cnumero','nimporte'];
+  displayedColumns: string[] = [ 'corden','tipodocu_codigo','cserie','cnumero','nimporte'];
   dataSource:any 
 
   ngOnInit(): void {
