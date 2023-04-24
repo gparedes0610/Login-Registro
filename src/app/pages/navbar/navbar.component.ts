@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit(): void {
-    console.log('ver useron',this.userOn)
+  //  console.log('ver useron',this.userOn)
   }
   salir(){
     localStorage.removeItem('token')

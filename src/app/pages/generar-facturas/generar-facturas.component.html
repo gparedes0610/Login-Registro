@@ -1,5 +1,4 @@
 <div class="container">
-  <p class="text-danger text-center text-uppercase mt-5 bg-blue-100 p-2 rounded">En Desarrollo </p>
   <p class="text-center text-uppercase mt-5">Generar Facturas</p>
 <div class="row">
   <div class="col-12 col-md-6 mx-auto">
@@ -116,6 +115,7 @@
         <label>AzureBlobStorage:</label>
         <input type="file" class="form-control"
         formControlName="AzureBlobStorage"
+        (change)="onFileSelected($event)"
         >
         <span
         class="text-danger"
@@ -131,8 +131,15 @@
   <!--   <label>AzureBlobStorage:</label>
     <input type="file" formControlName="AzureBlobStorage"> -->
   
-    <button class="btn btn-brand-02 btn-block mt-4" type="submit">Generar Factura</button>
-    <a class="btn btn-warning btn-block mt-4"  [routerLink]="['/dashboard/perfil ']">Cancelar</a>
+
+    <ng-container *ngIf="!loading">
+      <button class="btn btn-brand-02 btn-block mt-4" type="submit">Generar Factura</button>
+      <a class="btn btn-warning btn-block mt-4"  [routerLink]="['/dashboard/perfil ']">Cancelar</a>
+    </ng-container>
+  
+    <ng-container *ngIf="loading">
+      <app-loading></app-loading>
+    </ng-container>
   </form>
   </div>
 </div>

@@ -21,6 +21,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { DropdownModule } from 'primeng/dropdown';
 import { GenerarFacturasComponent } from './generar-facturas/generar-facturas.component';
 import { ConsultarPedidosComponent } from './consultar-pedidos/consultar-pedidos.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -52,7 +54,7 @@ import { ConsultarPedidosComponent } from './consultar-pedidos/consultar-pedidos
     MatSortModule,
     MatSelectModule,
     DropdownModule,
-    
+    HttpClientModule,
   ],
   imports: [
     CommonModule,
@@ -65,6 +67,7 @@ import { ConsultarPedidosComponent } from './consultar-pedidos/consultar-pedidos
     MatSelectModule,
     DropdownModule,
     FormsModule,
+    HttpClientModule,
   ]
 })
 export class PagesModule { }
