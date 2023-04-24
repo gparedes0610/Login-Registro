@@ -1,0 +1,139 @@
+<div class="container">
+  <p class="text-danger text-center text-uppercase mt-5 bg-blue-100 p-2 rounded">En Desarrollo </p>
+  <p class="text-center text-uppercase mt-5">Generar Facturas</p>
+<div class="row">
+  <div class="col-12 col-md-6 mx-auto">
+    
+    <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()" class="mb-5">
+
+      <div class="form-group">
+        <label>Serie:</label>
+        <input type="text" class="form-control"
+        formControlName="Serie"
+        >
+        <span
+        class="text-danger"
+        *ngIf="
+        invoiceForm.controls['Serie'].errors &&
+        invoiceForm.controls['Serie'].touched
+        "
+        >Por favor llenar Serie</span
+      >
+      </div>
+    
+      <div class="form-group">
+        <label>NumberInvoice:</label>
+        <input type="text" class="form-control"
+        formControlName="NumberInvoice"
+        >
+        <span
+        class="text-danger"
+        *ngIf="
+        invoiceForm.controls['NumberInvoice'].errors &&
+        invoiceForm.controls['NumberInvoice'].touched
+        "
+        >Por favor llenar NumberInvoice</span
+      >
+      </div>
+    
+    
+      <div class="form-group">
+        <label>NumberInvoice:</label>
+        <input type="date" class="form-control"
+        formControlName="DateInvoice"
+        >
+        <span
+        class="text-danger"
+        *ngIf="
+        invoiceForm.controls['DateInvoice'].errors &&
+        invoiceForm.controls['DateInvoice'].touched
+        "
+        >Por favor llenar DateInvoice</span
+      >
+      </div>
+    
+      <div class="form-group">
+        <label>DateDue:</label>
+        <input type="date" class="form-control"
+        formControlName="DateDue"
+        >
+        <span
+        class="text-danger"
+        *ngIf="
+        invoiceForm.controls['DateDue'].errors &&
+        invoiceForm.controls['DateDue'].touched
+        "
+        >Por favor llenar DateDue</span
+      >
+      </div>
+    
+      <div class="form-group">
+        <label>Currency:</label>
+        <input type="text" class="form-control"
+        formControlName="Currency"
+        >
+        <span
+        class="text-danger"
+        *ngIf="
+        invoiceForm.controls['Currency'].errors &&
+        invoiceForm.controls['Currency'].touched
+        "
+        >Por favor llenar Currency</span
+      >
+      </div>
+    
+      <div class="form-group">
+        <label>TotalAmount:</label>
+        <input type="text" class="form-control"
+        formControlName="TotalAmount"
+        >
+        <span
+        class="text-danger"
+        *ngIf="
+        invoiceForm.controls['TotalAmount'].errors &&
+        invoiceForm.controls['TotalAmount'].touched
+        "
+        >Por favor llenar TotalAmount</span
+      >
+      </div>
+    
+      <div class="form-group">
+        <label>IdPedidoErp:</label>
+        <input type="text" class="form-control"
+        formControlName="IdPedidoErp"
+        >
+        <span
+        class="text-danger"
+        *ngIf="
+        invoiceForm.controls['IdPedidoErp'].errors &&
+        invoiceForm.controls['IdPedidoErp'].touched
+        "
+        >Por favor llenar IdPedidoErp</span
+      >
+      </div>
+  
+      <div class="form-group">
+        <label>AzureBlobStorage:</label>
+        <input type="file" class="form-control"
+        formControlName="AzureBlobStorage"
+        >
+        <span
+        class="text-danger"
+        *ngIf="
+        invoiceForm.controls['AzureBlobStorage'].errors &&
+        invoiceForm.controls['AzureBlobStorage'].touched
+        "
+        >Por favor llenar AzureBlobStorage</span
+      >
+      </div>
+  
+  
+  <!--   <label>AzureBlobStorage:</label>
+    <input type="file" formControlName="AzureBlobStorage"> -->
+  
+    <button class="btn btn-brand-02 btn-block mt-4" type="submit">Generar Factura</button>
+    <a class="btn btn-warning btn-block mt-4"  [routerLink]="['/dashboard/perfil ']">Cancelar</a>
+  </form>
+  </div>
+</div>
+</div>

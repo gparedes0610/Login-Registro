@@ -19,6 +19,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSelectModule} from '@angular/material/select';
 
 import { DropdownModule } from 'primeng/dropdown';
+import { GenerarFacturasComponent } from './generar-facturas/generar-facturas.component';
+import { ConsultarPedidosComponent } from './consultar-pedidos/consultar-pedidos.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { DropdownModule } from 'primeng/dropdown';
     DatosUsuarioComponent,
     FooterComponent,
     RecoverpasswordComponent,
+    GenerarFacturasComponent,
+    ConsultarPedidosComponent,
     
   ],
   exports:[
@@ -48,10 +52,12 @@ import { DropdownModule } from 'primeng/dropdown';
     MatSortModule,
     MatSelectModule,
     DropdownModule,
+    
   ],
   imports: [
     CommonModule,
     RouterModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatPaginatorModule,
     MatTableModule,

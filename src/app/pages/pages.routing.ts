@@ -6,6 +6,8 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { DatosUsuarioComponent } from './datos-usuario/datos-usuario.component';
 import { ConsultasComponent } from './consultas/consultas.component';
+import { GenerarFacturasComponent } from './generar-facturas/generar-facturas.component';
+import { ConsultarPedidosComponent } from './consultar-pedidos/consultar-pedidos.component';
 
 const routes: Routes = [
     {
@@ -19,6 +21,12 @@ const routes: Routes = [
             },
             {
                 path:'datos',component:DatosUsuarioComponent
+            },
+            {
+                path:'generarFacturas',component:GenerarFacturasComponent
+            },
+            {
+                path:'consultarPedidos',component:ConsultarPedidosComponent,
             },
             {
                 path:'consultas',component:ConsultasComponent

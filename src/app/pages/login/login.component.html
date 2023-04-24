@@ -36,7 +36,13 @@
           </div>
 
           <div class="form-group">
-            <label>Ruc</label>
+           
+            <ng-container *ngIf="this.formularioLogin.controls['flag'].value == 'Proveedor'">
+              <label>Ruc</label>
+            </ng-container>
+            <ng-container *ngIf="this.formularioLogin.controls['flag'].value !== 'Proveedor'">
+              <label>Correo</label>
+            </ng-container>
             <input type="text" class="form-control" placeholder="20606250666"
             formControlName="ruc"
             >

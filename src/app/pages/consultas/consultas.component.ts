@@ -1,7 +1,7 @@
 
 
 import { RucService} from './../../services/ruc.service'
-import { Component, OnInit,ViewChild,AfterViewInit  } from '@angular/core'
+import { Component, OnInit,ViewChild  } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource, } from '@angular/material/table';
 
@@ -12,6 +12,9 @@ import { MatTableDataSource, } from '@angular/material/table';
   styleUrls: ['./consultas.component.css'],
 })
 export class ConsultasComponent implements OnInit    {
+  ruc:any=localStorage.getItem('usuarioRuc')
+  usuarioRuc = JSON.parse(this.ruc)
+  loading =false;
  
 @ViewChild(MatPaginator)paginator:MatPaginator
 
@@ -23,11 +26,14 @@ export class ConsultasComponent implements OnInit    {
   dataSource:any 
 
   ngOnInit(): void {
-    
-    this.rucService.obtenerDataRuc().subscribe((data:any) => {
+    this.loading=true
+    this.rucService.obtenerDataRuc(this.usuarioRuc).subscribe((data:any) => {
       console.log(data)
-      this.dataSource = new MatTableDataSource(data)
+      setTimeout(() => {
+        this.dataSource = new MatTableDataSource(data)
       this.dataSource.paginator=this.paginator
+      this.loading=false;
+      }, 3500);
       //this.dataSource = new MatTableDataSource<any>(data);
     })
   }

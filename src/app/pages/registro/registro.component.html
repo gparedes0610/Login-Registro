@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col-6 mx-auto">
       <form
@@ -10,7 +10,6 @@
           <p>Registrate:</p>
         </div>
 
-        <!-- Name input -->
         <div class="form-outline mb-4">
           <input
             type="number"
@@ -29,7 +28,6 @@
           >
         </div>
 
-        <!-- Email input -->
         <div class="form-outline mb-4">
           <input
             type="email"
@@ -48,7 +46,6 @@
           >
         </div>
 
-        <!-- Password input -->
         <div class="form-outline mb-4">
           <input
             type="password"
@@ -67,14 +64,9 @@
           >
         </div>
 
-        <!-- Repeat Password input 
-            <div class="form-outline mb-4">
-              <input type="password" id="registerRepeatPassword" class="form-control" />
-              <label class="form-label" for="registerRepeatPassword">Repetir Contraseña</label>
-            </div> -->
+     
 
         <ng-container *ngIf="!loading">
-          <!-- Submit button -->
           <button type="submit" class="btn btn-primary btn-block mb-3">
             Registrarme
           </button>
@@ -93,4 +85,97 @@
       </form>
     </div>
   </div>
-</div>
+</div> -->
+<!-- //////////////////////////////////////////////////////////////// -->
+<app-navbar></app-navbar>
+
+<div class="content content-fixed content-auth">
+  <div class="container">
+    <div class="media align-items-stretch justify-content-center ht-100p pos-relative">
+      <div class="media-body align-items-center d-none d-lg-flex">
+        <div class="mx-wd-700">
+          <img src="../../assets/img/registersvg.svg" class="img-fluid" alt="">
+        </div>
+      </div><!-- media-body -->
+      <div class="sign-wrapper mg-lg-l-50 mg-xl-l-60">
+        <div class="wd-100p">
+          <h3 class="tx-color-01 mg-b-5">Registrar</h3>
+          <p class="tx-color-03 tx-16 mg-b-40"></p>
+          <form
+          (ngSubmit)="registrar()"
+        [formGroup]="formularioRegistrar"
+          >
+
+          <div class="form-group">
+            <label>Numero de RUC</label>
+            <input type="text" class="form-control" placeholder="20606250666"
+            formControlName="ruc"
+            >
+            <span
+            class="text-danger"
+            *ngIf="
+              formularioRegistrar.controls['ruc'].errors &&
+              formularioRegistrar.controls['ruc'].touched
+            "
+            >Por favor llenar el RUC</span
+          >
+          </div>
+
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" placeholder="Escriba un correo"
+            formControlName="correo"
+            >
+            <span
+            class="text-danger"
+            *ngIf="
+              formularioRegistrar.controls['correo'].errors &&
+              formularioRegistrar.controls['correo'].touched
+            "
+            >Por favor llenar o poner un correo</span
+          >
+          </div>
+
+          <div class="form-group">
+            <label>Contraseña</label>
+            <input type="password" class="form-control" placeholder="Escriba una contrase;a"
+            formControlName="password"
+            >
+            <span
+            class="text-danger"
+            *ngIf="
+              formularioRegistrar.controls['password'].errors &&
+              formularioRegistrar.controls['password'].touched
+            "
+            >Por favor llenar el campo</span
+          >
+          </div>
+
+          <div class="form-group">
+    
+            <ng-container *ngIf="!loading">
+              <button class="btn btn-brand-02 btn-block mt-4" type="submit">Registrarme</button>
+              <a class="btn btn-brand-02 btn-block mt-4"   [routerLink]="['/login']">Cancelar</a>
+            </ng-container>
+
+            <ng-container *ngIf="loading">
+              <app-loading></app-loading>
+            </ng-container>
+           
+
+          </div>
+
+          </form>
+          
+          
+
+         
+         
+         
+        </div>
+      </div><!-- sign-wrapper -->
+    </div><!-- media -->
+  </div><!-- container -->
+</div><!-- content -->
+
+<app-footer></app-footer>
