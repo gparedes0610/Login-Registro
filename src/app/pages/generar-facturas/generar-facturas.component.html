@@ -126,6 +126,21 @@
         >Por favor llenar AzureBlobStorage</span
       >
       </div>
+
+      <div class="form-group d-none">
+        <label>NumberRuc:</label>
+        <input type="text" class="form-control"
+        formControlName="AzureBlobStorage"
+        >
+        <span
+        class="text-danger"
+        *ngIf="
+        invoiceForm.controls['NumberRuc'].errors &&
+        invoiceForm.controls['NumberRuc'].touched
+        "
+        >Por favor llenar NumberRuc</span
+      >
+      </div>
   
   
   <!--   <label>AzureBlobStorage:</label>
