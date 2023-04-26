@@ -1,6 +1,77 @@
-<div class="container h-100">
-    <div class="">
-        <p class="text-danger text-center text-uppercase mt-5 bg-blue-100 p-5 rounded">En Desarrollo </p>
-        <a class="btn btn-warning btn-block mt-4"  [routerLink]="['/dashboard/perfil ']">Regresar</a>
+<div class="container-fluid h-100">
+  <div class="row">
+    <div class="col-12 col-md-3">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Buscar..."
+        class="form-control"
+      />
     </div>
+    <div class="col-12 col-md-2">
+      <button (click)="search()" class="btn btn-brand-02 btn-block">
+        Buscar
+      </button>
+    </div>
+    <div class="col-12 col-md-2">
+      <button class="btn btn-warning btn-block" disabled>
+        Generar Factura
+      </button>
+    </div>
+  </div>
+
+  <div>
+    <ng-container *ngIf="loading==true">
+      <app-loading></app-loading>
+    </ng-container>
+    <ng-container *ngIf="data.length > 0 && loading==false">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Tipo</th>
+            <th>comprobante_Id</th>
+            <th>productoNombre</th>
+            <th>precioUnitarioCompra</th>
+            <th>precioTotalCompra</th>
+            <th>unidadMedida_id</th>
+            <th>precioUnitario</th>
+            <th>precioTotal</th>
+            <th>cantidad</th>
+            <th>devuelto</th>
+            <th>ganancia</th>
+            <th>productoGlosa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let item of data | paginate : { itemsPerPage: 10, currentPage: p }
+            "
+          >
+            <td>{{ item.tipo }}</td>
+            <td>{{ item.comprobante_Id }}</td>
+            <td>{{ item.productoNombre }}</td>
+            <td>{{ item.precioUnitarioCompra }}</td>
+            <td>{{ item.precioTotalCompra }}</td>
+            <td>{{ item.unidadMedida_id }}</td>
+            <td>{{ item.precioUnitario }}</td>
+            <td>{{ item.precioTotal }}</td>
+            <td>{{ item.cantidad }}</td>
+            <td>{{ item.devuelto }}</td>
+            <td>{{ item.ganancia }}</td>
+            <td>{{ item.productoGlosa }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </ng-container>
+  </div>
+  <div class="">
+    <a
+      class="btn btn-warning btn-block mt-4"
+      [routerLink]="['/dashboard/perfil ']"
+      >Regresar</a
+    >
+  </div>
 </div>

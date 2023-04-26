@@ -21,6 +21,7 @@ export class GenerarFacturasComponent {
     TotalAmount: ['', Validators.required],
     IdPedidoErp: ['', Validators.required],
     AzureBlobStorage: ['', Validators.required],
+    AzureBlobStorage2: ['', Validators.required],
     NumberRuc: ['', Validators.required],
   })
 
@@ -46,6 +47,11 @@ export class GenerarFacturasComponent {
     this.selectedFile = <File>event.target.files[0];
     //console.log('a ver =>',  this.selectedFile)
   }
+  selectedFile2: File = null;
+  onFileSelected2(event) {
+    this.selectedFile2 = <File>event.target.files[0];
+    //console.log('a ver =>',  this.selectedFile)
+  }
 
 
   onSubmit() {
@@ -65,6 +71,7 @@ export class GenerarFacturasComponent {
     formData.append('TotalAmount', this.invoiceForm.get('TotalAmount').value)
     formData.append('IdPedidoErp', this.invoiceForm.get('IdPedidoErp').value)
     formData.append('AzureBlobStorage', this.selectedFile)
+    formData.append('AzureBlobStorage2', this.selectedFile2)
     formData.append('NumberRuc', this.usuarioRuc.toString())
 
     console.log('ver fileName', fileName)

@@ -22,8 +22,12 @@ import { DropdownModule } from 'primeng/dropdown';
 import { GenerarFacturasComponent } from './generar-facturas/generar-facturas.component';
 import { ConsultarPedidosComponent } from './consultar-pedidos/consultar-pedidos.component';
 import { HttpClientModule } from '@angular/common/http';
-
-
+//ng
+import { ButtonModule } from 'primeng/button';
+import { TreeTableModule } from 'primeng/treetable';
+import { PaginatorModule } from 'primeng/paginator';
+//ngx
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     PagesComponent,
@@ -37,7 +41,6 @@ import { HttpClientModule } from '@angular/common/http';
     RecoverpasswordComponent,
     GenerarFacturasComponent,
     ConsultarPedidosComponent,
-    
   ],
   exports:[
     PagesComponent,
@@ -55,6 +58,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     DropdownModule,
     HttpClientModule,
+    ButtonModule,
+    TreeTableModule,
+    PaginatorModule,
+    
   ],
   imports: [
     CommonModule,
@@ -68,6 +75,10 @@ import { HttpClientModule } from '@angular/common/http';
     DropdownModule,
     FormsModule,
     HttpClientModule,
+    ButtonModule,
+    TreeTableModule,
+    PaginatorModule,
+    NgxPaginationModule,
   ]
 })
 export class PagesModule { }
