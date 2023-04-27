@@ -8,6 +8,7 @@ import { DatosUsuarioComponent } from './datos-usuario/datos-usuario.component';
 import { ConsultasComponent } from './consultas/consultas.component';
 import { GenerarFacturasComponent } from './generar-facturas/generar-facturas.component';
 import { ConsultarPedidosComponent } from './consultar-pedidos/consultar-pedidos.component';
+import { GenerarFacturarLogisticaComponent } from './generar-facturar-logistica/generar-facturar-logistica.component';
 
 const routes: Routes = [
     {
@@ -24,6 +25,9 @@ const routes: Routes = [
             },
             {
                 path:'generarFacturas',component:GenerarFacturasComponent
+            },
+            {
+                path:'generarFacturasLogistica',component:GenerarFacturarLogisticaComponent
             },
             {
                 path:'consultarPedidos',component:ConsultarPedidosComponent,

@@ -26,8 +26,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
 import { TreeTableModule } from 'primeng/treetable';
 import { PaginatorModule } from 'primeng/paginator';
+import { DialogModule } from 'primeng/dialog';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { CardModule } from 'primeng/card';
 //ngx
 import { NgxPaginationModule } from 'ngx-pagination';
+import { GenerarFacturarLogisticaComponent } from './generar-facturar-logistica/generar-facturar-logistica.component';
+
 @NgModule({
   declarations: [
     PagesComponent,
@@ -41,6 +46,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     RecoverpasswordComponent,
     GenerarFacturasComponent,
     ConsultarPedidosComponent,
+    GenerarFacturarLogisticaComponent,
   ],
   exports:[
     PagesComponent,
@@ -79,6 +85,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     TreeTableModule,
     PaginatorModule,
     NgxPaginationModule,
+    DialogModule,
+    RadioButtonModule,
+    CardModule
   ]
 })
 export class PagesModule { }

@@ -16,21 +16,23 @@ export class GenerarFacturasService {
     headers.append('Content-Type', 'multipart/form-data');
 
     return this.http.post(`${this.baseUrl}/v1/Invoice`, registro,{headers}).subscribe((response) => {
-      console.log('Response:', response);
-      Swal.fire({
+     // console.log('Response:', response);
+     alert('Generado!')
+     /*  Swal.fire({
         icon: 'success',
         title: 'Generado!',
         showConfirmButton: false,
-        timer: 1500
-      })
+        timer: 1500,
+      }) */
     }, (error) => {
       console.log('Error:', error);
-      Swal.fire({
+      alert(`${error.error.Message}`)
+    /*   Swal.fire({
         icon: 'error',
         title: `${error.error.Message}`,
         showConfirmButton: false,
         timer: 6500
-      })
+      }) */
     });
   }
 }

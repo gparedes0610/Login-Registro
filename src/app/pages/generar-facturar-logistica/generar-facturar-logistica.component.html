@@ -1,0 +1,52 @@
+<div class="container h-100">
+    <div class="flex flex-wrap gap-3 mt-5">
+    <div class="flex align-items-center">
+        <p-radioButton name="pizza" value="Cheese" [(ngModel)]="ingredient" inputId="ingredient1"></p-radioButton>
+        <label for="ingredient1" class="ml-2">Buscar por Ruc</label>
+    </div>
+    
+    <div class="flex align-items-center">
+        <p-radioButton name="pizza" value="Mushroom" [(ngModel)]="ingredient" inputId="ingredient2"></p-radioButton>
+        <label for="ingredient2" class="ml-2">Buscar por Pedido</label>
+    </div>
+  
+</div>
+  
+<div class="row ">
+    <div class="col-12 col-md-3">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Buscar..."
+        class="form-control"
+      />
+    </div>
+    <div class="col-12 col-md-2">
+      <button (click)="search()" class="btn btn-brand-02 btn-block">
+        Buscar
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6">
+        <div class="card flex justify-content-center">
+            <p-card header="Datos de Factura">
+                <p class="m-0">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
+                    quas!
+                </p>
+            </p-card>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="card flex justify-content-center">
+            <p-card header="Datos del pedido">
+                <p class="m-0">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
+                    quas!
+                </p>
+            </p-card>
+        </div>
+    </div>
+  </div>
+</div>

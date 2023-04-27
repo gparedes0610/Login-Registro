@@ -2,7 +2,7 @@
   <p class="text-center text-uppercase mt-5">Generar Facturas</p>
 <div class="row">
   <div class="col-12 col-md-6 mx-auto">
-    
+    <p>{{this.copiaDeSearch}}</p>
     <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()" class="mb-5">
 
       <div class="form-group">
@@ -95,21 +95,23 @@
         >Por favor llenar TotalAmount</span
       >
       </div>
-    
-      <div class="form-group">
-        <label>IdPedidoErp:</label>
-        <input type="text" class="form-control"
-        formControlName="IdPedidoErp"
+      <ng-container *ngIf="!copiaDeSearch">
+        <div class="form-group">
+          <label>IdPedidoErp:</label>
+          <input type="text" class="form-control"
+          formControlName="IdPedidoErp"
+          >
+          <span
+          class="text-danger"
+          *ngIf="
+          invoiceForm.controls['IdPedidoErp'].errors &&
+          invoiceForm.controls['IdPedidoErp'].touched
+          "
+          >Por favor llenar IdPedidoErp</span
         >
-        <span
-        class="text-danger"
-        *ngIf="
-        invoiceForm.controls['IdPedidoErp'].errors &&
-        invoiceForm.controls['IdPedidoErp'].touched
-        "
-        >Por favor llenar IdPedidoErp</span
-      >
-      </div>
+        </div>
+      </ng-container>
+     
   
       <div class="form-group">
         <label>AzureBlobStorage:</label>

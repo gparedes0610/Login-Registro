@@ -13,11 +13,6 @@
         Buscar
       </button>
     </div>
-    <div class="col-12 col-md-2">
-      <button class="btn btn-warning btn-block" disabled>
-        Generar Factura
-      </button>
-    </div>
   </div>
 
   <div>
@@ -25,6 +20,28 @@
       <app-loading></app-loading>
     </ng-container>
     <ng-container *ngIf="data.length > 0 && loading==false">
+      <div class="row">
+        <div class="col-12 col-md-2">   <h2 class="text-uppercase d-inline my-3 me-4">Pedido numero : {{this.copiaDeSearch}}</h2></div>
+        <div class="col-12 col-md-3">  
+          <div class="card flex justify-content-center">
+            <button (click)="showDialog()" icon="pi pi-external-link" label="Show" class="btn btn-success btn-inline">
+              Generar Factura
+            </button>
+            <p-dialog header="" [(visible)]="visible" [style]="{width: '50vw'}"
+            >
+               <app-generar-facturas
+               [copiaDeSearch]="copiaDeSearch"
+               [visible]="visible"
+               (newItemEvent)="funcionEjm($event)"
+               ></app-generar-facturas>
+            </p-dialog>
+        </div>
+        
+      
+      </div>
+      </div>
+   
+   
       <table class="table">
         <thead>
           <tr>
@@ -69,7 +86,7 @@
   </div>
   <div class="">
     <a
-      class="btn btn-warning btn-block mt-4"
+      class="btn btn-warning btn-inline mt-4"
       [routerLink]="['/dashboard/perfil ']"
       >Regresar</a
     >

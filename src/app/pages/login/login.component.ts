@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
         })
         this.loading=false;
         localStorage.setItem('usuarioRuc',JSON.stringify(usu.rucProveedor))//chapamos el RUC
+        localStorage.setItem('usuarioFlag',JSON.stringify(usu.flaglogin))//chapamos el flaglogin
         this.router.navigateByUrl('/dashboard/perfil')
       },
       (err) => {
