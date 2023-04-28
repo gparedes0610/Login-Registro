@@ -11,6 +11,9 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+
+  flag: any = localStorage.getItem('usuarioFlag')
+  usuarioFlag:any = JSON.parse(this.flag)
   userOn:string=localStorage.getItem('token')
 
   constructor(private router:Router) { }

@@ -1,6 +1,6 @@
-<div class="container h-100">
-    <div class="flex flex-wrap gap-3 mt-5">
-    <div class="flex align-items-center">
+<div class="container-fluid h-100">
+  <div class="flex flex-wrap gap-3 mt-5">
+    <!-- <div class="flex align-items-center">
         <p-radioButton name="pizza" value="Cheese" [(ngModel)]="ingredient" inputId="ingredient1"></p-radioButton>
         <label for="ingredient1" class="ml-2">Buscar por Ruc</label>
     </div>
@@ -8,15 +8,24 @@
     <div class="flex align-items-center">
         <p-radioButton name="pizza" value="Mushroom" [(ngModel)]="ingredient" inputId="ingredient2"></p-radioButton>
         <label for="ingredient2" class="ml-2">Buscar por Pedido</label>
-    </div>
-  
-</div>
-  
-<div class="row ">
+    </div> -->
+  </div>
+
+  <div class="row">
     <div class="col-12 col-md-3">
       <input
         type="text"
         [(ngModel)]="searchTerm"
+        placeholder="Buscar..."
+        class="form-control"
+        pattern="^\S+$" title="El término de búsqueda no debe contener espacios en blanco" 
+        
+      />
+    </div>
+    <div class="col-12 col-md-3">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm2"
         placeholder="Buscar..."
         class="form-control"
       />
@@ -27,26 +36,105 @@
       </button>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 col-md-6">
-        <div class="card flex justify-content-center">
+  <ng-container *ngIf="mostrar">
+
+    
+    <ng-container *ngIf="loading">
+      <app-loading></app-loading>
+    </ng-container>
+
+    <ng-container *ngIf="!loading">
+      <h2>
+        {{this.copiaDeSearch}} - {{this.copiaDeSearch2}}
+      </h2>
+      <div class="row">
+      
+        <div class="col-12 col-lg-6">
+          <div class="card flex justify-content-center">
             <p-card header="Datos de Factura">
-                <p class="m-0">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-                    quas!
-                </p>
+              <h1>Serie : {{ data2.serie }}</h1>
+              <p>Número de factura: {{ data2.numberInvoice }}</p>
+              <p>Fecha de factura: {{ data2.dateInvoice }}</p>
+              <p>Fecha de vencimiento: {{ data2.dateDue }}</p>
+              <p>Moneda: {{ data2.currency }}</p>
+              <p>Monto total: {{ data2.totalAmount }}</p>
+              <p>ID de pedido en ERP: {{ data2.idpedidoErp }}</p>
+              <p>Número de RUC: {{ data2.numberRuc }}</p>
+              <div class="row">
+                <div class="col-12 col-md-6 ">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="86"
+                    height="86"
+                    fill="currentColor"
+                    class="bi bi-file-earmark-pdf"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"
+                    />
+                    <path
+                      d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.697 19.697 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.266.266 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.71 12.71 0 0 1 1.01-.193 11.744 11.744 0 0 1-.51-.858 20.801 20.801 0 0 1-.5 1.05zm2.446.45c.15.163.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.876 3.876 0 0 0-.612-.053zM8.078 7.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"
+                    />
+                  </svg>
+                </div>
+                <div class="col-12 col-md-6">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="86"
+                    height="86"
+                    fill="currentColor"
+                    class="bi bi-filetype-xml"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M14 4.5V14a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM3.527 11.85h-.893l-.823 1.439h-.036L.943 11.85H.012l1.227 1.983L0 15.85h.861l.853-1.415h.035l.85 1.415h.908l-1.254-1.992 1.274-2.007Zm.954 3.999v-2.66h.038l.952 2.159h.516l.946-2.16h.038v2.661h.715V11.85h-.8l-1.14 2.596h-.025L4.58 11.85h-.806v3.999h.706Zm4.71-.674h1.696v.674H8.4V11.85h.791v3.325Z"
+                    />
+                  </svg>
+                </div>
+              </div>
             </p-card>
+          </div>
         </div>
-    </div>
-    <div class="col-12 col-md-6">
-        <div class="card flex justify-content-center">
+        <div class="col-12 col-lg-6">
+          <div class="card flex justify-content-center">
             <p-card header="Datos del pedido">
-                <p class="m-0">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-                    quas!
-                </p>
+              <p>Serie: {{ data.serie }}</p>
+              <p>Correlativo: {{ data.correlativo }}</p>
+              <p>Identidad del cliente: {{ data.clienteIdentidad }}</p>
+              <p>Nombre del cliente: {{ data.clienteNombre }}</p>
+              <p>Dirección del cliente: {{ data.clienteDireccion }}</p>
+              <p>Correo electrónico del cliente: {{ data.clienteCorreo }}</p>
+              <div>
+                <h2>Detalle</h2>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Producto</th>
+                      <th>Precio unitario</th>
+                      <th>Cantidad</th>
+                      <th>Ganancia</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let pedido of data.pedidodetalles">
+                      <td>{{ pedido.id }}</td>
+                      <td>{{ pedido.productoNombre }}</td>
+                      <td>{{ pedido.precioUnitario }}</td>
+                      <td>{{ pedido.cantidad }}</td>
+                      <td>{{ pedido.ganancia }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </p-card>
+          </div>
         </div>
-    </div>
-  </div>
+      </div>
+    </ng-container>
+    
+  </ng-container>
+ 
 </div>
