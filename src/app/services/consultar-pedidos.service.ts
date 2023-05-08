@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
   providedIn: 'root'
 })
 export class ConsultarPedidosService {
-  private baseUrl: string = environment.baseUrl
+  private baseUrl: any = environment.baseUrl
   constructor(private http: HttpClient) { }
 
   consultarPedidos(OS3447:any,rucUsuario:any){

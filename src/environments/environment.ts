@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   baseUrl:'https://apiproveedores-amg.azurewebsites.net/api',//esta es la de desarrollo aqui chambeas no mas
-  baseUrlProductora:'https://apisproductora.azurewebsites.net/api'
+  baseUrlProductora:'https://apisproductora.azurewebsites.net/api',
 };
 
 /*

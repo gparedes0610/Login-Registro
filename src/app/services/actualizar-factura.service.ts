@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment'
   providedIn: 'root'
 })
 export class ActualizarFacturaService {
-  private baseUrlProductora: string = environment.baseUrlProductora
+  private baseUrlProductora: any = environment.baseUrlProductora
   tokenProductora: any = localStorage.getItem('tokenProductora')
   private authToken = this.tokenProductora;
 
