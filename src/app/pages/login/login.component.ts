@@ -30,6 +30,8 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+
+  
     this.loading=true
     if (!this.formularioLogin.valid ) {
       this.formularioLogin.markAllAsTouched();
@@ -69,5 +71,13 @@ export class LoginComponent implements OnInit {
       },
     )
 
+    const formData:any = new FormData()
+    formData.append('UserName', 'jquiroz@amg.pe')
+    formData.append('Password', 'Productora.20')
+    formData.append('Empresa', '20610157905')
+
+      this.loginService.loginProductura(formData).subscribe((data)=>{
+        console.log('ver data login productora =>',data);
+      })
   }
 }

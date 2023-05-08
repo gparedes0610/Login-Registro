@@ -47,6 +47,19 @@
       <h2>
         {{this.copiaDeSearch}} - {{this.copiaDeSearch2}}
       </h2>
+
+      <div class="row">
+        <ng-container *ngIf="loading2">
+          <app-loading></app-loading>
+        </ng-container>
+        <ng-container *ngIf="!loading2">
+          <div class="col-12 col-md-6">
+            <button class="btn btn-primary " (click)="enviarActualizacionDeFactura()">Generar Factura</button>
+            <button class="btn btn-danger mx-3" (click)="enviarActualizacionDeFactura()">Denegar Factura</button>
+          </div>
+        </ng-container>
+       
+      </div>
       <div class="row">
       
         <div class="col-12 col-lg-6">

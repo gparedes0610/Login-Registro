@@ -9,10 +9,10 @@ export class GenerarFacturaLogisticaService {
   
   constructor(private http: HttpClient) { }
 
-  consultarDatosFacturas(OS3447:any,rucUsuario:any){
-    return this.http.get(`${this.baseUrl}/v1/invoice/pedido/${OS3447}/${rucUsuario}`)
+  consultarDatosFacturas(nrPedido:any,rucUsuario:any){
+    return this.http.get(`${this.baseUrl}/v1/invoice/pedido/${nrPedido}/${rucUsuario}`)
   }
-  consultarDatosPedidos(OS3447:any,rucUsuario:any){
-    return this.http.get(`${this.baseUrl}/pedido/detail/${OS3447}/${rucUsuario}`)
+  consultarDatosPedidos(nrPedido:any,rucUsuario:any){
+    return this.http.get(`${this.baseUrl}/pedido/detail/${nrPedido}/${rucUsuario}`)
   }
 }

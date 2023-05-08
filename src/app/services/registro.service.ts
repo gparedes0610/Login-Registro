@@ -13,6 +13,5 @@ export class RegistroService {
    //registrar
    registrar(registro: Registro) {
     return this.http.post(`${this.baseUrl}/v1/Account/Register`, registro)
-    
   }
 }
