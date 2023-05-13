@@ -1,7 +1,10 @@
+import { saveAs } from 'file-saver';
+import { GenerarDescargasService } from './../../services/generar-descargas.service'
 import { ActualizarFacturaService } from './../../services/actualizar-factura.service'
 import { Component } from '@angular/core'
 import { GenerarFacturaLogisticaService } from 'src/app/services/generar-factura-logistica.service'
 import Swal from 'sweetalert2'
+
 
 @Component({
   selector: 'app-generar-facturar-logistica',
@@ -20,12 +23,14 @@ export class GenerarFacturarLogisticaComponent {
   data: any = {}
   data2: any = {}
   dataPdf: any = {}
+  dataXml: any = {}
   mostrar = false
   ingredient: string
   idComprobante: any
   constructor(
     private generarFacturaLogisticaService: GenerarFacturaLogisticaService,
     private actualizarFacturaService: ActualizarFacturaService,
+    private generarDescargasService: GenerarDescargasService,
   ) {}
 
   search() {
@@ -58,9 +63,10 @@ export class GenerarFacturarLogisticaComponent {
           console.log('ver result', result)
           this.data2 = result
           //this.data = result
-          // console.log('documentos =>',this.data2.documentos[0]);
-          //console.log('documentos 2 =>',this.data2.documentos[1]);
+          console.log('documentos =>', this.data2.documentos[0])
+          console.log('documentos 2 =>', this.data2.documentos[1])
           this.dataPdf = this.data2.documentos[0]
+          this.dataXml = this.data2.documentos[1]
           this.loading = false
 
           //this.data2 = result
@@ -126,17 +132,17 @@ export class GenerarFacturarLogisticaComponent {
     }
 
     // console.log('nuevaData =>',nuevaData);
-    this.loading2=true;
+    this.loading2 = true
     this.actualizarFacturaService.actualizarFactura(nuevaData).subscribe(
       (data) => {
-        console.log('ver data =>', data)
+        // console.log('ver data =>', data)
         //this.idComprobante=data;
         this.enviarNuevoRecepcionFacturas(data)
-        this.loading2=false;
+        this.loading2 = false
       },
       (err) => {
         console.log('ver error =>', err)
-        this.loading2=false;
+        this.loading2 = false
       },
     )
   }
@@ -169,20 +175,52 @@ export class GenerarFacturarLogisticaComponent {
     console.log('haber nuevaData en enviarNuevoRecepcionFacturas =>', nuevaData)
 
     this.actualizarFacturaService.NuevoRecepcionFacturas(nuevaData).subscribe(
-      (data:any) => {
+      (data: any) => {
         console.log('ver data NuevoRecepcionFacturas=>', data)
-        console.log('this.data.mensaje =>',data.mensaje);
+        console.log('this.data.mensaje =>', data.mensaje)
         //this.idComprobante=data;
         Swal.fire({
           icon: 'success',
           title: `${data.mensaje}`,
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         })
       },
       (err) => {
         console.log('ver error NuevoRecepcionFacturas =>', err)
       },
     )
+  }
+
+  descargarXml() {
+    console.log('dataPdf =>', this.dataXml)
+    console.log('vas a enviar esto =>', this.dataXml.pathFile)
+
+    const options = {
+      responseType: 'blob' as 'json' // Especificamos el tipo de respuesta como blob
+    };
+      this.generarDescargasService.descargarPdfs(this.dataXml.pathFile, options)
+      .subscribe((res: any) => {
+        const blob = new Blob([res], { type: 'application/pdf' });
+        saveAs(blob, `${this.dataXml.pathFile}`);
+      }, (error: any) => {
+        console.error('Error al descargar el archivo', error);
+      });
+  }
+  descargarPdf() {
+    console.log('dataPdf =>', this.dataPdf)
+    console.log('vas a enviar esto =>', this.dataPdf.pathFile)
+
+    const options = {
+      responseType: 'blob' as 'json' // Especificamos el tipo de respuesta como blob
+    };
+      this.generarDescargasService.descargarPdfs(this.dataPdf.pathFile, options)
+      .subscribe((res: any) => {
+        const blob = new Blob([res], { type: 'application/pdf' });
+        saveAs(blob, `${this.dataPdf.pathFile}`);
+      }, (error: any) => {
+        console.error('Error al descargar el archivo', error);
+      });
+
   }
 }

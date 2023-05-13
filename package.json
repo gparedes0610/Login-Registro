@@ -24,6 +24,7 @@
     "datatables.net": "^1.12.1",
     "datatables.net-bs5": "^1.11.3",
     "datatables.net-dt": "^1.13.3",
+    "file-saver": "^2.0.5",
     "jquery": "^3.6.4",
     "ngx-pagination": "^6.0.3",
     "primeicons": "^6.0.1",
