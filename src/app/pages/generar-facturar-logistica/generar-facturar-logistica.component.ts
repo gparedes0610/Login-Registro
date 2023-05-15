@@ -1,3 +1,4 @@
+import { EliminarFacturasService } from './../../services/eliminar-facturas.service';
 import { saveAs } from 'file-saver';
 import { GenerarDescargasService } from './../../services/generar-descargas.service'
 import { ActualizarFacturaService } from './../../services/actualizar-factura.service'
@@ -31,6 +32,7 @@ export class GenerarFacturarLogisticaComponent {
     private generarFacturaLogisticaService: GenerarFacturaLogisticaService,
     private actualizarFacturaService: ActualizarFacturaService,
     private generarDescargasService: GenerarDescargasService,
+    private eliminarFacturasService:EliminarFacturasService
   ) {}
 
   search() {
@@ -60,11 +62,11 @@ export class GenerarFacturarLogisticaComponent {
       .consultarDatosFacturas(this.searchTerm, this.searchTerm2)
       .subscribe(
         (result: any) => {
-          console.log('ver result', result)
           this.data2 = result
+         // console.log('result =>',result);
           //this.data = result
-          console.log('documentos =>', this.data2.documentos[0])
-          console.log('documentos 2 =>', this.data2.documentos[1])
+          //console.log('documentos =>', this.data2.documentos[0])
+          //console.log('documentos 2 =>', this.data2.documentos[1])
           this.dataPdf = this.data2.documentos[0]
           this.dataXml = this.data2.documentos[1]
           this.loading = false
@@ -139,6 +141,7 @@ export class GenerarFacturarLogisticaComponent {
         //this.idComprobante=data;
         this.enviarNuevoRecepcionFacturas(data)
         this.loading2 = false
+        this.mostrar=false;
       },
       (err) => {
         console.log('ver error =>', err)
@@ -193,8 +196,8 @@ export class GenerarFacturarLogisticaComponent {
   }
 
   descargarXml() {
-    console.log('dataPdf =>', this.dataXml)
-    console.log('vas a enviar esto =>', this.dataXml.pathFile)
+   // console.log('dataPdf =>', this.dataXml)
+   // console.log('vas a enviar esto =>', this.dataXml.pathFile)
 
     const options = {
       responseType: 'blob' as 'json' // Especificamos el tipo de respuesta como blob
@@ -208,8 +211,8 @@ export class GenerarFacturarLogisticaComponent {
       });
   }
   descargarPdf() {
-    console.log('dataPdf =>', this.dataPdf)
-    console.log('vas a enviar esto =>', this.dataPdf.pathFile)
+    //console.log('dataPdf =>', this.dataPdf)
+   // console.log('vas a enviar esto =>', this.dataPdf.pathFile)
 
     const options = {
       responseType: 'blob' as 'json' // Especificamos el tipo de respuesta como blob
@@ -222,5 +225,19 @@ export class GenerarFacturarLogisticaComponent {
         console.error('Error al descargar el archivo', error);
       });
 
+  }
+
+  btnEliminarFactura(){
+    console.log('data2 =>',this.data2);
+    const data ={
+      idInvoice: this.data2.idInvoice
+    }
+
+    console.log('se enviara data =>',data);
+    this.eliminarFacturasService.eliminarFactura(data).subscribe((resp)=>{
+      console.log('ver resp =>',resp);
+      alert('Factura denegada')
+      this.mostrar=false;
+    })
   }
 }
