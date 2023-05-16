@@ -68,9 +68,15 @@
     
       <div class="form-group">
         <label>Currency:</label>
-        <input type="text" class="form-control"
+        <select class="form-control"
+        formControlName="Currency">
+          <option value="" disabled>Seleccione una opcion</option>
+          <option value="PEN">PEN</option>
+          <option value="USD">USD</option>
+        </select>
+       <!--  <input type="text" class="form-control"
         formControlName="Currency"
-        >
+        > -->
         <span
         class="text-danger"
         *ngIf="

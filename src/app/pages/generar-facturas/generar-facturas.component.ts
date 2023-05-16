@@ -76,7 +76,7 @@ export class GenerarFacturasComponent {
       this.generarFacturasService.generarFacturas(formData)
       this.invoiceForm.reset()
       this.loading=false
-    }, 3000);
+    }, 4500);
    }else{
     const formData = new FormData()
 

@@ -234,10 +234,16 @@ export class GenerarFacturarLogisticaComponent {
     }
 
     console.log('se enviara data =>',data);
-    this.eliminarFacturasService.eliminarFactura(data).subscribe((resp)=>{
-      console.log('ver resp =>',resp);
-      alert('Factura denegada')
-      this.mostrar=false;
-    })
+    if (confirm("¿Esta seguro de denegar factura??")) {
+      this.eliminarFacturasService.eliminarFactura(data).subscribe((resp)=>{
+        console.log('ver resp =>',resp);
+        alert('Factura denegada')
+        this.mostrar=false;
+      })
+      return;
+    } else {
+     return;
+    }
+  
   }
 }

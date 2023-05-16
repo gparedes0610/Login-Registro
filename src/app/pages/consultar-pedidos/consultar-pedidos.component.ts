@@ -9,7 +9,7 @@ import Swal from 'sweetalert2'
 })
 export class ConsultarPedidosComponent implements OnInit {
   visible: boolean
-
+  mostrar:boolean
   showDialog() {
     this.visible = true
   }
