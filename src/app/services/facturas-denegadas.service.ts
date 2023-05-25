@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient  } from '@angular/common/http'
 import { environment } from 'src/environments/environment'
-import Swal from 'sweetalert2'
 @Injectable({
   providedIn: 'root'
 })
-export class ConsultarPedidosService {
+export class FacturasDenegadasService {
   private baseUrl: any = environment.baseUrl
   constructor(private http: HttpClient) { }
 
-  consultarPedidos(OS3447:any,rucUsuario:any){
-    return this.http.get(`${this.baseUrl}/pedido/${OS3447}/${rucUsuario}`)
+  facturasDenegadas(data:any){
+    return this.http.get(`${this.baseUrl}/v1/invoice/rejected/${data}`)
   }
 }

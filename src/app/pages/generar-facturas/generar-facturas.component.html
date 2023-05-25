@@ -1,9 +1,10 @@
-<div class="container">
-  <p class="text-center text-uppercase mt-5">Generar Facturas</p>
+<div class="container" style="padding-bottom: 100px;">
+  <div class="container-generarfacturas">
+    <h2 class="text-center text-uppercase mt-5 mb-3">GENERAR FACTURAS</h2>
 <div class="row">
-  <div class="col-12 col-md-6 mx-auto">
+  <div class="mx-auto">
     <p>{{this.copiaDeSearch}}</p>
-    <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()" class="mb-5">
+    <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()" class="mb-5 form-generar-facturas">
 
       <div class="form-group">
         <label>Serie:</label>
@@ -154,7 +155,7 @@
       <div class="form-group d-none">
         <label>NumberRuc:</label>
         <input type="text" class="form-control"
-        formControlName="AzureBlobStorage"
+        formControlName="NumberRuc"
         >
         <span
         class="text-danger"
@@ -172,8 +173,11 @@
   
 
     <ng-container *ngIf="!loading">
-      <button class="btn btn-brand-02 btn-block mt-4" type="submit">Generar Factura</button>
-      <a class="btn btn-warning btn-block mt-4"  [routerLink]="['/dashboard/perfil ']">Cancelar</a>
+      <div class="buttons-generarFacturas">
+        <button class="btn btn-primary" type="submit">Generar Factura</button>
+        <button   type="button" class="btn-secondary"  [routerLink]="['/dashboard/perfil ']">Cancelar</button>
+      </div>
+    
     </ng-container>
   
     <ng-container *ngIf="loading">
@@ -182,4 +186,5 @@
   </form>
   </div>
 </div>
+  </div>
 </div>

@@ -1,0 +1,8 @@
+
+.container-perfil{
+    max-width: 500px;
+
+    margin: 0 auto;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}

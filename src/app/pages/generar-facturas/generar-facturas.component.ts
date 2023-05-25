@@ -54,56 +54,65 @@ export class GenerarFacturasComponent {
 
   onSubmit() {
     this.loading=true
-   if(!this.copiaDeSearch){
-    const formData = new FormData()
 
-    const fullPath = this.invoiceForm.get('AzureBlobStorage').value
-    const fileName = fullPath.split('\\').pop()
-    formData.append('Serie', this.invoiceForm.get('Serie').value)
-    formData.append(
-      'NumberInvoice',
-      this.invoiceForm.get('NumberInvoice').value,
-    )
-    formData.append('DateInvoice', this.invoiceForm.get('DateInvoice').value)
-    formData.append('DateDue', this.invoiceForm.get('DateDue').value)
-    formData.append('Currency', this.invoiceForm.get('Currency').value)
-    formData.append('TotalAmount', this.invoiceForm.get('TotalAmount').value)
-    formData.append('IdPedidoErp', this.invoiceForm.get('IdPedidoErp').value)
-    formData.append('AzureBlobStorage', this.selectedFile)
-    formData.append('AzureBlobStorage2', this.selectedFile2)
-    formData.append('NumberRuc', this.usuarioRuc.toString())
-    setTimeout(() => {
-      this.generarFacturasService.generarFacturas(formData)
-      this.invoiceForm.reset()
-      this.loading=false
-    }, 4500);
-   }else{
-    const formData = new FormData()
-
-    const fullPath = this.invoiceForm.get('AzureBlobStorage').value
-    const fileName = fullPath.split('\\').pop()
-   // const visibleFalse=false;
-    formData.append('Serie', this.invoiceForm.get('Serie').value)
-    formData.append(
-      'NumberInvoice',
-      this.invoiceForm.get('NumberInvoice').value,
-    )
-    formData.append('DateInvoice', this.invoiceForm.get('DateInvoice').value)
-    formData.append('DateDue', this.invoiceForm.get('DateDue').value)
-    formData.append('Currency', this.invoiceForm.get('Currency').value)
-    formData.append('TotalAmount', this.invoiceForm.get('TotalAmount').value)
-    formData.append('IdPedidoErp', this.copiaDeSearch)
-    formData.append('AzureBlobStorage', this.selectedFile)
-    formData.append('AzureBlobStorage2', this.selectedFile2)
-    formData.append('NumberRuc', this.usuarioRuc.toString())
-    this.visible=false;
-    this.newItemEvent.emit(this.visible)
-    setTimeout(() => {
-      this.generarFacturasService.generarFacturas(formData)
-      this.invoiceForm.reset()
-      this.loading=false
-    }, 3000);
-   }
+    if (!this.invoiceForm.valid ) {
+   //   this.invoiceForm.markAllAsTouched();
+   console.log('this.invoiceForm =>',this.invoiceForm);
+      this.loading =false;
+      alert('formulario invalido')
+      return
+    }
+    if(!this.copiaDeSearch){
+      const formData = new FormData()
+  
+      const fullPath = this.invoiceForm.get('AzureBlobStorage').value
+      const fileName = fullPath.split('\\').pop()
+      formData.append('Serie', this.invoiceForm.get('Serie').value)
+      formData.append(
+        'NumberInvoice',
+        this.invoiceForm.get('NumberInvoice').value,
+      )
+      formData.append('DateInvoice', this.invoiceForm.get('DateInvoice').value)
+      formData.append('DateDue', this.invoiceForm.get('DateDue').value)
+      formData.append('Currency', this.invoiceForm.get('Currency').value)
+      formData.append('TotalAmount', this.invoiceForm.get('TotalAmount').value)
+      formData.append('IdPedidoErp', this.invoiceForm.get('IdPedidoErp').value)
+      formData.append('AzureBlobStorage', this.selectedFile)
+      formData.append('AzureBlobStorage2', this.selectedFile2)
+      formData.append('NumberRuc', this.usuarioRuc.toString())
+      setTimeout(() => {
+        this.generarFacturasService.generarFacturas(formData)
+        this.invoiceForm.reset()
+        this.loading=false
+      }, 5000);
+     }else{
+      const formData = new FormData()
+  
+      const fullPath = this.invoiceForm.get('AzureBlobStorage').value
+      const fileName = fullPath.split('\\').pop()
+     // const visibleFalse=false;
+      formData.append('Serie', this.invoiceForm.get('Serie').value)
+      formData.append(
+        'NumberInvoice',
+        this.invoiceForm.get('NumberInvoice').value,
+      )
+      formData.append('DateInvoice', this.invoiceForm.get('DateInvoice').value)
+      formData.append('DateDue', this.invoiceForm.get('DateDue').value)
+      formData.append('Currency', this.invoiceForm.get('Currency').value)
+      formData.append('TotalAmount', this.invoiceForm.get('TotalAmount').value)
+      formData.append('IdPedidoErp', this.copiaDeSearch)
+      formData.append('AzureBlobStorage', this.selectedFile)
+      formData.append('AzureBlobStorage2', this.selectedFile2)
+      formData.append('NumberRuc', this.usuarioRuc.toString())
+      this.visible=false;
+      this.newItemEvent.emit(this.visible)
+      setTimeout(() => {
+        this.generarFacturasService.generarFacturas(formData)
+        this.invoiceForm.reset()
+        this.loading=false
+      }, 5000);
+     }
+   
 
 
 

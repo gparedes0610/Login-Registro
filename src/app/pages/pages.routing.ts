@@ -1,3 +1,4 @@
+import { FacturasDenegadasComponent } from './facturas-denegadas/facturas-denegadas.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './pages.component';
@@ -9,6 +10,7 @@ import { ConsultasComponent } from './consultas/consultas.component';
 import { GenerarFacturasComponent } from './generar-facturas/generar-facturas.component';
 import { ConsultarPedidosComponent } from './consultar-pedidos/consultar-pedidos.component';
 import { GenerarFacturarLogisticaComponent } from './generar-facturar-logistica/generar-facturar-logistica.component';
+import { FacturaDenegadaComponent } from './factura-denegada/factura-denegada.component';
 
 const routes: Routes = [
     {
@@ -31,6 +33,12 @@ const routes: Routes = [
             },
             {
                 path:'consultarPedidos',component:ConsultarPedidosComponent,
+            },
+            {
+                path:'facturasDenegadas',component:FacturasDenegadasComponent,
+            },
+            {
+                path:'facturaDenegada/:id',component:FacturaDenegadaComponent,
             },
             {
                 path:'consultas',component:ConsultasComponent

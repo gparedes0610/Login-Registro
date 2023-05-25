@@ -1,0 +1,28 @@
+<p-button (click)="showDialog()" icon="pi pi-external-link" label="Detalle" >
+   
+</p-button>
+<p-dialog header="Modificar" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+   <div>
+    <form [formGroup]="myForm">
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Serie:</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1"  formControlName="serie" >
+          </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Number Invoice:</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1"  formControlName="numberInvoice" >
+          </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">dateInvoice:</label>
+            <input type="date" class="form-control" id="exampleFormControlInput1"  formControlName="dateInvoice" >
+          </div>
+    
+  
+      
+    
+        <button type="button" (click)="saveChanges()">Save</button>
+      </form>
+
+   </div>
+</p-dialog>

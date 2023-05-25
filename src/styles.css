@@ -1,4 +1,78 @@
+*{
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+text-decoration: none;
+font-family: 'Roboto', sans-serif !important;
+}
+.p-menubar{
+    border-radius: 0;
+    background-color: #032893;
+    border-color: #032893
+}
+body{
+    font-family: 'Roboto', sans-serif !important;
+    background-color: #EFF2F7;
+}
+img{
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.text-danger{
+    color: red
+}
+.container{
+    max-width: 1500px;
+    margin: 0 auto
+}
+.p-menuitem-text{
+    color: #CCCCCC !important;
+}
+/* .p-menuitem-link{
+    background-color: purple
+} */
+.p-menuitem-link:hover{
+    background-color: #4286F4 !important
+}
+.btn-primary {
+    display: block;
+    width: 100%;
+    height: 40px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .form-control {
+    width: 100%;
+    height: 30px;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+ 
+
+  .btn-secondary {
+    display: block;
+    width: 100%;
+    height: 40px;
+    background-color: #ccc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #999;
+  }
+
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
-@import "primeicons/primeicons.css";
-

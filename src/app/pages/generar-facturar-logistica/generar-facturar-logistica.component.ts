@@ -140,6 +140,7 @@ export class GenerarFacturarLogisticaComponent {
         // console.log('ver data =>', data)
         //this.idComprobante=data;
         this.enviarNuevoRecepcionFacturas(data)
+        this.enviarDocuments(data)
         this.loading2 = false
         this.mostrar=false;
       },
@@ -179,8 +180,8 @@ export class GenerarFacturarLogisticaComponent {
 
     this.actualizarFacturaService.NuevoRecepcionFacturas(nuevaData).subscribe(
       (data: any) => {
-        console.log('ver data NuevoRecepcionFacturas=>', data)
-        console.log('this.data.mensaje =>', data.mensaje)
+      //  console.log('ver data NuevoRecepcionFacturas=>', data)
+      //  console.log('this.data.mensaje =>', data.mensaje)
         //this.idComprobante=data;
         Swal.fire({
           icon: 'success',
@@ -193,6 +194,19 @@ export class GenerarFacturarLogisticaComponent {
         console.log('ver error NuevoRecepcionFacturas =>', err)
       },
     )
+  }
+
+  enviarDocuments(id: any){
+   
+    const nuevaDta =  {
+        nameFilePdf: this.dataPdf.pathFile,
+        nameFilexml: this.dataXml.pathFile,
+        idorigen: id.idComprobante // viene del ip de una de las 3 apis
+      }
+   // console.log('ver nuevaDta =>',nuevaDta);
+    this.actualizarFacturaService.documents(nuevaDta).subscribe((result)=>{
+      console.log('ver result enviarDocuments=>',result);
+    })
   }
 
   descargarXml() {
@@ -228,7 +242,7 @@ export class GenerarFacturarLogisticaComponent {
   }
 
   btnEliminarFactura(){
-    console.log('data2 =>',this.data2);
+   // console.log('data2 =>',this.data2);
     const data ={
       idInvoice: this.data2.idInvoice
     }

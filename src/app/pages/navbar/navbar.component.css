@@ -1,0 +1,23 @@
+.logo{
+    color: white;
+    font-size: 32px;
+    font-weight: 500;
+    padding-right: 15px;
+}
+.logo-erp{
+    color: #2C5ED0;
+}
+@media (max-width: 768px) { 
+    .logo{
+        font-size: 20px;
+    }
+ }
+
+ .my-actions { margin: 0 2em; }
+.order-1 { order: 1; }
+.order-2 { order: 2; }
+.order-3 { order: 3; }
+
+.right-gap {
+  margin-right: auto;
+}

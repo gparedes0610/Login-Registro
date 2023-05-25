@@ -20,7 +20,9 @@ export class LoginComponent implements OnInit {
     flag:['',[Validators.required]],
   })
 
-  constructor(private fb: FormBuilder, private loginService: LoginService,private router:Router, private rucService:RucService) {}
+  constructor(private fb: FormBuilder, private loginService: LoginService,private router:Router, private rucService:RucService) {
+    localStorage.removeItem('token')
+  }
 
   ngOnInit(): void {
     localStorage.removeItem('token')
@@ -30,7 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-
+    console.log('funciona?',this.formularioLogin.value);
   
     this.loading=true
     if (!this.formularioLogin.valid ) {

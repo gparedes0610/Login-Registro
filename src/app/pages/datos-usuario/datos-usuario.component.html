@@ -1,18 +1,22 @@
 
-<div class="h-100">
-  <div class="container bg-white p-3 mt-5 rounded">
+<div class="container mt-4">
+  <h2 class="mb-3 text-center">Datos Personales</h2>
+  <div class="container-perfil bg-white p-3 mt-5">
     <p>
-      Usuario : <b class="text-primary">{{usuarioData.userName}}</b>
+      USUARIO : <b class="text-primary">{{usuarioData.userName}}</b>
     </p>
+    <br>
       <p>
-        Ruc : <b class="text-primary">{{ruc}}</b>
+        RUC : <b class="text-primary">{{ruc}}</b>
       </p>
+       <br>
       <p>
-        Correo : <b class="text-primary">{{usuarioData.email}}</b>
+        CORREO : <b class="text-primary">{{usuarioData.email}}</b>
       </p>
+       <br>
       <div class="row">
         <div class="col-12 col-md-3">
-          <button class="btn btn-brand-02 btn-block mt-4" [routerLink]="['/dashboard/perfil']">Regresar</button>
+          <button class="btn-primary" [routerLink]="['/dashboard/perfil']">Regresar</button>
         </div>
       </div>
   

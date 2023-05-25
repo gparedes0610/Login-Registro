@@ -1,24 +1,19 @@
-<div class="container-fluid h-100">
-  <div class="row">
-    <div class="col-12 col-md-3">
-      <input
-        type="text"
-        [(ngModel)]="searchTerm"
-        placeholder="Buscar..."
-        class="form-control"
-      />
-    </div>
-    <div class="col-12 col-md-2">
-      <button (click)="search()" class="btn btn-brand-02 btn-block">
-        Buscar
-      </button>
-    </div>
+<div class="container mt-5">
+  <h2 class="text-center text-uppercase mt-5 mb-3">CONSULTAR PEDIDOS</h2>
+  <div style="display: flex; justify-content: center; align-items: center; gap: 30px;">
+    <span class="p-float-label">
+      <input pInputText id="username"  [(ngModel)]="searchTerm" />
+      <label htmlFor="username">Buscar...</label>
+  </span>
+  <p-button label="Buscar" styleClass="p-button-raised mt-4 mb-4" (click)="search()" ></p-button>
   </div>
+
 
   <div>
     <ng-container *ngIf="loading==true">
       <app-loading></app-loading>
     </ng-container>
+    <ng-container *ngIf="data.length == 0" ><p class="text-center mt-3">Realize su busqueda...</p></ng-container>
     <ng-container *ngIf="data.length > 0 && loading==false">
       <div class="row">
         <div class="col-12 col-md-2">   <h2 class="text-uppercase d-inline my-3 me-4">Pedido numero : {{this.copiaDeSearch}}</h2></div>
@@ -85,10 +80,6 @@
     </ng-container>
   </div>
   <div class="">
-    <a
-      class="btn btn-warning btn-inline mt-4"
-      [routerLink]="['/dashboard/perfil ']"
-      >Regresar</a
-    >
+    <p-button label="Regresar" styleClass="p-button-raised p-button-warning"     [routerLink]="['/dashboard/perfil ']"></p-button>
   </div>
 </div>

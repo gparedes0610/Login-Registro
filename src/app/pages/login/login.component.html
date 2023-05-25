@@ -1,101 +1,83 @@
 <app-navbar></app-navbar>
 
-<div class="content content-fixed content-auth">
-  <div class="container">
-    <div class="media align-items-stretch justify-content-center ht-100p pos-relative">
-      <div class="media-body align-items-center d-none d-lg-flex">
-        <div class="mx-wd-700">
-          <img src="../../assets/img/img15.png" class="img-fluid" alt="">
-        </div>
-      </div><!-- media-body -->
-      <div class="sign-wrapper mg-lg-l-50 mg-xl-l-60">
-        <div class="wd-100p">
-          <h3 class="tx-color-01 mg-b-5">Sign In</h3>
-          <p class="tx-color-03 tx-16 mg-b-40">Welcome back! Please signin to continue.</p>
-          <form
-          (ngSubmit)="login()"
-          [formGroup]="formularioLogin"
-          >
-          <div class="form-group">
-            <label>Company</label>
-            <select class="custom-select"
-            formControlName="flag"
-            >
-            <option value="" selected disabled hidden>Seleccione uno</option>
-              <option value="Logistica" selected="Logistica">Logistica</option>
-              <option value="Proveedor">Proveedor</option>
-            </select>
-            <span
-              class="text-danger"
-              *ngIf="
-                formularioLogin.controls['flag'].errors &&
-                formularioLogin.controls['flag'].touched
-              "
-              >Por favor seleccionar compañia</span
-            >
-          </div>
+<div class="container-login container animate__animated animate__bounceInLeft">
+  <div class="">
+    <img src="../../assets/img/img15.png" class="img-login" alt="">
+  </div>
+  <div class="login-container ">
+    <h2 >Iniciar sesión</h2>
+    <form
+    (ngSubmit)="login()"
+    [formGroup]="formularioLogin"
+    >
+      <div class="form-group">
+       
+        <ng-container *ngIf="this.formularioLogin.controls['flag'].value == 'Proveedor'">
+          <label for="text">Ruc</label>
+        </ng-container>
+        <ng-container *ngIf="this.formularioLogin.controls['flag'].value !== 'Proveedor'">
+          <label>Correo</label>
+        </ng-container>
+        <input type="text" id="text" class="form-control" placeholder="20606250666"
+        formControlName="ruc"
+        >
+        <span
+                class="text-danger"
+                *ngIf="
+                  formularioLogin.controls['ruc'].errors &&
+                  formularioLogin.controls['ruc'].touched
+                "
+                >Por favor no dejar vacio</span
+              >
+      </div>
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" class="form-control" placeholder="Ingrese su contraseña"
+        formControlName="password">
+        <span
+        class="text-danger"
+        *ngIf="
+          formularioLogin.controls['password'].errors &&
+          formularioLogin.controls['password'].touched
+        "
+        >Por favor llenar contraseña</span
+      >
+      </div>
+      <div class="form-group">
+        <label for="role">Compañia</label>
+        <select id="role" class="form-control"
+        formControlName="flag">
+          <option value="" selected disabled hidden>Seleccione una opcion</option>
+          <option value="Logistica" selected="Logistica">Logistica</option>
+          <option value="Proveedor">Proveedor</option>
+        </select>
+        <span
+        class="text-danger"
+        *ngIf="
+          formularioLogin.controls['flag'].errors &&
+          formularioLogin.controls['flag'].touched
+        "
+        >Por favor seleccionar compañia</span
+      >
+      </div>
+      <ng-container *ngIf="!loading">
+        <button type="submit" class="btn btn-primary" (click)="login()">Iniciar sesión</button>
+      </ng-container>
 
-          <div class="form-group">
-           
-            <ng-container *ngIf="this.formularioLogin.controls['flag'].value == 'Proveedor'">
-              <label>Ruc</label>
-            </ng-container>
-            <ng-container *ngIf="this.formularioLogin.controls['flag'].value !== 'Proveedor'">
-              <label>Correo</label>
-            </ng-container>
-            <input type="text" class="form-control" placeholder="20606250666"
-            formControlName="ruc"
-            >
-            <span
-              class="text-danger"
-              *ngIf="
-                formularioLogin.controls['ruc'].errors &&
-                formularioLogin.controls['ruc'].touched
-              "
-              >Por favor llenar el RUC</span
-            >
-          </div>
+      <ng-container *ngIf="loading">
+        <app-loading></app-loading>
+      </ng-container>
+     
+    </form>
+    <div class="signup-link">
+      ¿No tienes una cuenta? <a [routerLink]="['/registro']">Registrate</a>
+    </div>
+  </div>
+</div>
 
-          <div class="form-group">
-            <div class="d-flex justify-content-between mg-b-5">
-              <label class="mg-b-0-f"
-              >Password</label>
-              <a href="" class="tx-13">Forgot password?</a>
-            </div>
-            <input type="password" class="form-control" placeholder="Enter your password"
-            formControlName="password"
-            >
-            <span
-              class="text-danger"
-              *ngIf="
-                formularioLogin.controls['password'].errors &&
-                formularioLogin.controls['password'].touched
-              "
-              >Por favor llenar contraseña</span
-            >
-            <ng-container *ngIf="!loading">
-              <button class="btn btn-brand-02 btn-block mt-4" type="submit">Ingresar</button>
-              <a class="btn btn-brand-02 btn-block mt-4"   [routerLink]="['/registro']">Registrate</a>
-            </ng-container>
 
-            <ng-container *ngIf="loading">
-              <app-loading></app-loading>
-            </ng-container>
-           
 
-          </div>
 
-          </form>
-          
-          
 
-         
-         
-         
-        </div>
-      </div><!-- sign-wrapper -->
-    </div><!-- media -->
-  </div><!-- container -->
-</div><!-- content -->
 
 <app-footer></app-footer>

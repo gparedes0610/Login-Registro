@@ -1,0 +1,45 @@
+<ng-container *ngIf="loading; else empty">
+    <div class="container mt-4">
+        <app-loading></app-loading>
+    </div>
+    
+</ng-container>
+
+<ng-template #empty>
+
+    <div class="container mt-4">
+        <h2 class="text-center text-uppercase mt-5 mb-3">FACTURAS DENEGADAS</h2>
+ <p-table [value]="items" [rows]="rowsPerPage" [paginator]="true" [totalRecords]="totalRecords">
+            <ng-template pTemplate="header">
+                <tr>
+                  <th>Serie</th>
+                <th>Numero Invocie</th>
+                <th>Fecha</th>
+                <th>Currency</th>
+                <th>Total</th>
+                <th>Detalle</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                  <td>{{ product.serie }}</td>
+                  <td>{{ product.numberInvoice }}</td>
+                  <td>{{ product.dateInvoice | fechaNormal}}</td>
+                  <td>{{ product.currency }}</td>
+                  <td>{{ product.totalAmount }}</td>
+                  <td>
+                  <app-factura-denegada [item]="product"></app-factura-denegada>
+                  </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+        <p-button label="Regresar" icon="pi-arrow-left" [routerLink]="['/dashboard/perfil']" styleClass="p-button-warning mt-4"></p-button>
+      
+    
+        
+    </div>
+    
+</ng-template>
+
+
