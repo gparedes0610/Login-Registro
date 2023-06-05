@@ -9,7 +9,7 @@
   [resizable]="false"
 >
   <div>
-    <form [formGroup]="myForm">
+    <form [formGroup]="myForm" class="form-generar-facturas">
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Serie:</label>
         <input
@@ -93,7 +93,8 @@
         <input type="text" class="form-control" formControlName="numberRuc" />
       </div>
 
-      <button type="button" (click)="saveChanges()">Save</button>
+<!--       <button type="button" (click)="saveChanges()">Save</button> -->
+      <button   type="button" class="btn btn-primary" (click)="saveChanges()">Guardar</button>
     </form>
   </div>
 </p-dialog>
