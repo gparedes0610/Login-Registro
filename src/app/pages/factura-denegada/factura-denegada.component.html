@@ -1,28 +1,99 @@
-<p-button (click)="showDialog()" icon="pi pi-external-link" label="Detalle" >
-   
+<p-button (click)="showDialog()" icon="pi pi-external-link" label="Detalle">
 </p-button>
-<p-dialog header="Modificar" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
-   <div>
+<p-dialog
+  header="Modificar"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '80vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div>
     <form [formGroup]="myForm">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Serie:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          formControlName="serie"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Number Invoice:</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          formControlName="numberInvoice"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">dateInvoice:</label>
+        <input type="date" class="form-control" id="exampleFormControlInput1" formControlName="dateInvoice">
+        
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">dateDue:</label>
+        <input type="date" class="form-control" id="exampleFormControlInput1" formControlName="dateDue">
+        
+      </div>
+      <div class="mb-3">
+        <label>Currency:</label>
+        <select class="form-control" formControlName="currency">
+          <option value="" disabled>Seleccione una opción</option>
+          <option value="MN">PEN</option>
+          <option value="USD">USD</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"
+          >totalAmount:</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          formControlName="totalAmount"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"
+          >idpedidoErp:</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          formControlName="idpedidoErp"
+        />
+      </div>
+      <div class="mb-3">
+        <label>AzureBlobStorage:</label>
+        <input
+          type="file"
+          class="form-control"
+          formControlName="AzureBlobStorage"
+          (change)="onFileSelected($event)"
+        />
+      </div>
+      <div class="mb-3">
+        <label>AzureBlobStorage2:</label>
+        <input
+          type="file"
+          class="form-control"
+          formControlName="AzureBlobStorage2"
+          (change)="onFileSelected2($event)"
+        />
+      </div>
+      <div class="mb-3">
+        <label>NumberRuc:</label>
+        <input type="text" class="form-control" formControlName="numberRuc" />
+      </div>
 
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Serie:</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1"  formControlName="serie" >
-          </div>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Number Invoice:</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1"  formControlName="numberInvoice" >
-          </div>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">dateInvoice:</label>
-            <input type="date" class="form-control" id="exampleFormControlInput1"  formControlName="dateInvoice" >
-          </div>
-    
-  
-      
-    
-        <button type="button" (click)="saveChanges()">Save</button>
-      </form>
-
-   </div>
+      <button type="button" (click)="saveChanges()">Save</button>
+    </form>
+  </div>
 </p-dialog>

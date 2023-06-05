@@ -8,6 +8,13 @@ import Swal from 'sweetalert2'
   styleUrls: ['./consultar-pedidos.component.css'],
 })
 export class ConsultarPedidosComponent implements OnInit {
+
+
+  items: [];
+  totalRecords: number;
+  rowsPerPage: number;
+
+
   visible: boolean
   mostrar:boolean
   showDialog() {
@@ -15,6 +22,7 @@ export class ConsultarPedidosComponent implements OnInit {
   }
   funcionEjm(valor:any){
     console.log('ver valor',valor)
+    this.visible=valor
   }
 
   loading = false
@@ -42,6 +50,10 @@ export class ConsultarPedidosComponent implements OnInit {
       .subscribe(
         (result: any) => {
           console.log('ver result', result)
+          this.items =result
+          this.totalRecords = this.items.length;
+          this.rowsPerPage = 5;
+          //
           this.loading = false
           this.data = result
           this.searchTerm = ''

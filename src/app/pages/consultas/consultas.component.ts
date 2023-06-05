@@ -34,16 +34,7 @@ export class ConsultasComponent implements OnInit {
 
   ngOnInit(): void {
 
-/*     this.items = [
-      { name: 'Item 1', category: 'Category A' },
-      { name: 'Item 2', category: 'Category B' },
-      // ... otros elementos ...
-    ];
-
-    this.totalRecords = this.items.length; */
     this.rowsPerPage = 5; // Número de filas por página
-
-
 
     this.loading = true;
     this.rucService.obtenerDataRuc(this.usuarioRuc).subscribe((data: any) => {

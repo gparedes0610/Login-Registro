@@ -1,11 +1,12 @@
-<div class="container mt-5">
+<div class="container mt-5 mb-8">
   <h2 class="text-center text-uppercase mt-5 mb-3">CONSULTAR PEDIDOS</h2>
   <div style="display: flex; justify-content: center; align-items: center; gap: 30px;">
     <span class="p-float-label">
       <input pInputText id="username"  [(ngModel)]="searchTerm" />
       <label htmlFor="username">Buscar...</label>
   </span>
-  <p-button label="Buscar" styleClass="p-button-raised mt-4 mb-4" (click)="search()" ></p-button>
+  <p-button label="Buscar" styleClass="p-button-primary mt-4 mb-4" (click)="search()" ></p-button>
+
   </div>
 
 
@@ -19,10 +20,8 @@
         <div class="col-12 col-md-2">   <h2 class="text-uppercase d-inline my-3 me-4">Pedido numero : {{this.copiaDeSearch}}</h2></div>
         <div class="col-12 col-md-3">  
           <div class="card flex justify-content-center">
-            <button (click)="showDialog()" icon="pi pi-external-link" label="Show" class="btn btn-success btn-inline">
-              Generar Factura
-            </button>
-            <p-dialog header="" [(visible)]="visible" [style]="{width: '50vw'}"
+            <p-button label=" Generar Factura" icon="pi-arrow-left" styleClass="p-button-success" (click)="showDialog()"></p-button>
+            <p-dialog header="" [(visible)]="visible" [style]="{width: '80vw',height:'100%'}"
             >
                <app-generar-facturas
                [copiaDeSearch]="copiaDeSearch"
@@ -36,9 +35,8 @@
       </div>
       </div>
    
-   
-      <table class="table">
-        <thead>
+      <p-table [value]="items" [rows]="rowsPerPage" [paginator]="true" [totalRecords]="totalRecords">
+        <ng-template pTemplate="header">
           <tr>
             <th>Tipo</th>
             <th>comprobante_Id</th>
@@ -53,13 +51,9 @@
             <th>ganancia</th>
             <th>productoGlosa</th>
           </tr>
-        </thead>
-        <tbody>
-          <tr
-            *ngFor="
-              let item of data | paginate : { itemsPerPage: 10, currentPage: p }
-            "
-          >
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
             <td>{{ item.tipo }}</td>
             <td>{{ item.comprobante_Id }}</td>
             <td>{{ item.productoNombre }}</td>
@@ -73,13 +67,11 @@
             <td>{{ item.ganancia }}</td>
             <td>{{ item.productoGlosa }}</td>
           </tr>
-        </tbody>
-      </table>
-
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </ng-template>
+      </p-table>
     </ng-container>
   </div>
   <div class="">
-    <p-button label="Regresar" styleClass="p-button-raised p-button-warning"     [routerLink]="['/dashboard/perfil ']"></p-button>
+    <p-button label="Regresar" icon="pi-arrow-left" [routerLink]="['/dashboard/perfil']" styleClass="p-button-warning mt-4 mb-6"></p-button>
   </div>
 </div>

@@ -65,8 +65,8 @@ export class GenerarFacturasComponent {
     if(!this.copiaDeSearch){
       const formData = new FormData()
   
-      const fullPath = this.invoiceForm.get('AzureBlobStorage').value
-      const fileName = fullPath.split('\\').pop()
+    //  const fullPath = this.invoiceForm.get('AzureBlobStorage').value
+    //  const fileName = fullPath.split('\\').pop()
       formData.append('Serie', this.invoiceForm.get('Serie').value)
       formData.append(
         'NumberInvoice',
@@ -112,10 +112,13 @@ export class GenerarFacturasComponent {
         this.loading=false
       }, 5000);
      }
-   
-
-
-
 
   }
+
+  cancelar(){
+    this.visible=false;
+    this.newItemEvent.emit(this.visible)
+  }
+
+
 }

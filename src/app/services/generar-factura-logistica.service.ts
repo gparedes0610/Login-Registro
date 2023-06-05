@@ -15,4 +15,8 @@ export class GenerarFacturaLogisticaService {
   consultarDatosPedidos(nrPedido:any,rucUsuario:any){
     return this.http.get(`${this.baseUrl}/pedido/detail/${nrPedido}/${rucUsuario}`)
   }
+
+  consultarListado(){
+    return this.http.get(`${this.baseUrl}/v1/invoice/pending`)
+  }
 }

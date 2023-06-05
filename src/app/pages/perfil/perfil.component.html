@@ -89,40 +89,52 @@
 </div> -->
 
 <div class="container container-perfil">
-  <div class="card-group">
-   <!--  <div class="card">
-      <i class='bx bxs-pencil'></i>
-      <h3>Generar Factura Logistica</h3>
-    </div> --> 
-    <div class="card" [routerLink]="['/dashboard/datos']">
-      <i class='bx bx-user'></i>
-      <h3 class="">Datos Personales</h3>
-    </div>
-    <div class="card" [routerLink]="['/dashboard/generarFacturas']">
-      <i class='bx bxs-pencil'></i>
-      <h3>Generar Facturas</h3>
-    </div>
-    
-    <div class="card" [routerLink]="['/dashboard/consultas']">
-      <i class='bx bx-question-mark' ></i>
-      <h3>Consultar Facturas</h3>
-    </div>
 
+  <ng-container *ngIf="usuarioFlag=='Logistica'">
+    <div class="card-group">
+      <div class="card" [routerLink]="['/dashboard/generarFacturasLogistica']">
+        <i class='bx bxs-pencil'></i>
+        <h3>Generar Factura Logistica</h3>
+      </div> 
   </div>
-  <div class="card-group">
-    
-    <div class="card"  [routerLink]="['/dashboard/facturasDenegadas']">
-      <i class='bx bxs-notification-off'></i>
-      <h3>Facturas Denegadas</h3>
+  </ng-container>
+  <ng-container *ngIf="usuarioFlag!=='Logistica'">
+  
+    <div class="card-group">
+
+      <div class="card" [routerLink]="['/dashboard/datos']">
+        <i class='bx bx-user'></i>
+        <h3 class="">Datos Personales</h3>
+      </div>
+      <div class="card" [routerLink]="['/dashboard/generarFacturas']">
+        <i class='bx bxs-pencil'></i>
+        <h3>Generar Facturas</h3>
+      </div>
+      
+      <div class="card" [routerLink]="['/dashboard/consultas']">
+        <i class='bx bx-question-mark' ></i>
+        <h3>Consultar Facturas</h3>
+      </div>
+  
     </div>
-    <div class="card" [routerLink]="['/dashboard/consultarPedidos']">
-      <i class='bx bx-question-mark' ></i>
-      <h3>Consultar Pedidos</h3>
+    <div class="card-group">
+      
+      <div class="card"  [routerLink]="['/dashboard/facturasDenegadas']">
+        <i class='bx bxs-notification-off'></i>
+        <h3>Facturas Denegadas</h3>
+      </div>
+      <div class="card" [routerLink]="['/dashboard/consultarPedidos']">
+        <i class='bx bx-question-mark' ></i>
+        <h3>Consultar Pedidos</h3>
+      </div>
+      <div class="card no-card">
+        <h3></h3>
+      </div>
     </div>
-    <div class="card no-card">
-      <h3></h3>
-    </div>
-  </div>
+  </ng-container>
+
+
+
 
 </div>
 

@@ -2,7 +2,7 @@ import { EliminarFacturasService } from './../../services/eliminar-facturas.serv
 import { saveAs } from 'file-saver';
 import { GenerarDescargasService } from './../../services/generar-descargas.service'
 import { ActualizarFacturaService } from './../../services/actualizar-factura.service'
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { GenerarFacturaLogisticaService } from 'src/app/services/generar-factura-logistica.service'
 import Swal from 'sweetalert2'
 
@@ -12,7 +12,19 @@ import Swal from 'sweetalert2'
   templateUrl: './generar-facturar-logistica.component.html',
   styleUrls: ['./generar-facturar-logistica.component.css'],
 })
-export class GenerarFacturarLogisticaComponent {
+export class GenerarFacturarLogisticaComponent implements OnInit{
+
+
+  items: [];
+  totalRecords: number;
+  rowsPerPage: number;
+
+  visible: boolean;
+
+  showDialog() {
+      this.visible = true;
+  }
+
   loading = false
   loading2 = false
   searchTerm: string = ''
@@ -28,6 +40,9 @@ export class GenerarFacturarLogisticaComponent {
   mostrar = false
   ingredient: string
   idComprobante: any
+
+  listadoData =[]
+
   constructor(
     private generarFacturaLogisticaService: GenerarFacturaLogisticaService,
     private actualizarFacturaService: ActualizarFacturaService,
@@ -35,31 +50,28 @@ export class GenerarFacturarLogisticaComponent {
     private eliminarFacturasService:EliminarFacturasService
   ) {}
 
-  search() {
+
+  ngOnInit(): void {
+    this.generarFacturaLogisticaService.consultarListado().subscribe((result:any)=>{
+      this.items =result
+      this.totalRecords = this.items.length;
+      this.rowsPerPage = 5;
+    })
+  }
+
+  search(valor1:any,valor2:any) {
+    console.log('valor 1 y 2',valor1,valor2);
+    this.showDialog()
+
     this.loading = true
 
-    this.copiaDeSearch = this.searchTerm
-    this.copiaDeSearch2 = this.searchTerm2
-    const regex: RegExp = /^\S+$/
-    if (!regex.test(this.searchTerm)) {
-      alert('El término de búsqueda no debe contener espacios en blanco')
-      this.searchTerm = ''
-      return
-    }
-    if (!regex.test(this.searchTerm2)) {
-      alert('El término de búsqueda no debe contener espacios en blanco')
-      this.searchTerm2 = ''
-      return
-    }
+   this.copiaDeSearch =valor1
+    this.copiaDeSearch2 = valor2 
 
-    if (this.searchTerm == '' || this.searchTerm2 == '') {
-      alert('No a ingresado nada o falta un valor')
-      return
-    }
     this.mostrar = true
 
     this.generarFacturaLogisticaService
-      .consultarDatosFacturas(this.searchTerm, this.searchTerm2)
+      .consultarDatosFacturas(valor1, valor2)
       .subscribe(
         (result: any) => {
           this.data2 = result
@@ -89,12 +101,10 @@ export class GenerarFacturarLogisticaComponent {
       )
 
     this.generarFacturaLogisticaService
-      .consultarDatosPedidos(this.searchTerm, this.searchTerm2)
+      .consultarDatosPedidos(valor1, valor2)
       .subscribe(
         (result: any) => {
-          //  console.log('ver result', result)
           this.loading = false
-          // this.data2 = result
           this.searchTerm = ''
           this.searchTerm2 = ''
           this.data = result
@@ -114,8 +124,6 @@ export class GenerarFacturarLogisticaComponent {
   }
 
   enviarActualizacionDeFactura() {
-    // console.log('data Factura =>',this.data2);
-    //console.log('data Pedido =>',this.data);
     const fechaHoraString = this.data2.dateInvoice
     const fechaString = fechaHoraString.substring(0, 10) // obtener la parte de la cadena que representa la fecha
     //console.log('fechaString=>',fechaString);
@@ -176,13 +184,9 @@ export class GenerarFacturarLogisticaComponent {
       Importe: this.data2.totalAmount, //Datos de factura totalAmount
     }
 
-    console.log('haber nuevaData en enviarNuevoRecepcionFacturas =>', nuevaData)
 
     this.actualizarFacturaService.NuevoRecepcionFacturas(nuevaData).subscribe(
       (data: any) => {
-      //  console.log('ver data NuevoRecepcionFacturas=>', data)
-      //  console.log('this.data.mensaje =>', data.mensaje)
-        //this.idComprobante=data;
         Swal.fire({
           icon: 'success',
           title: `${data.mensaje}`,
@@ -210,8 +214,6 @@ export class GenerarFacturarLogisticaComponent {
   }
 
   descargarXml() {
-   // console.log('dataPdf =>', this.dataXml)
-   // console.log('vas a enviar esto =>', this.dataXml.pathFile)
 
     const options = {
       responseType: 'blob' as 'json' // Especificamos el tipo de respuesta como blob
@@ -225,8 +227,6 @@ export class GenerarFacturarLogisticaComponent {
       });
   }
   descargarPdf() {
-    //console.log('dataPdf =>', this.dataPdf)
-   // console.log('vas a enviar esto =>', this.dataPdf.pathFile)
 
     const options = {
       responseType: 'blob' as 'json' // Especificamos el tipo de respuesta como blob
@@ -242,12 +242,9 @@ export class GenerarFacturarLogisticaComponent {
   }
 
   btnEliminarFactura(){
-   // console.log('data2 =>',this.data2);
     const data ={
       idInvoice: this.data2.idInvoice
     }
-
-    console.log('se enviara data =>',data);
     if (confirm("¿Esta seguro de denegar factura??")) {
       this.eliminarFacturasService.eliminarFactura(data).subscribe((resp)=>{
         console.log('ver resp =>',resp);

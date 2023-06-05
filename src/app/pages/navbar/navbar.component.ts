@@ -26,6 +26,11 @@ export class NavbarComponent implements OnInit {
             label: 'Acciones',
             icon: 'pi pi-fw pi-file',
             items: [
+              {
+                label: 'Panel Inicial',
+                icon: 'pi pi-fw pi-bookmark',
+                command: () => this.router.navigate(['/dashboard/perfil'])
+            },
                 {
                   label: 'Factura Logistica',
                   icon: 'pi pi-fw pi-bookmark'
