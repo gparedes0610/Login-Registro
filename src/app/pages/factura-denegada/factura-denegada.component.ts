@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class FacturaDenegadaComponent implements OnInit {
   @Input('item') item!: any
+ 
   ruc: any = localStorage.getItem('usuarioRuc')
   usuarioRuc = JSON.parse(this.ruc)
   /*  serie: string
@@ -94,8 +95,10 @@ export class FacturaDenegadaComponent implements OnInit {
     formData.append('AzureBlobStorage', this.selectedFile)
     formData.append('AzureBlobStorage2', this.selectedFile2)
     formData.append('NumberRuc', this.usuarioRuc.toString()) 
+    formData.append('idInvoice', this.item.idInvoice) 
 
      console.log('formData =>',formData);
     this.facturasDenegadasService.actualizarFactura(formData)
+    this.visible = false
   }
 }

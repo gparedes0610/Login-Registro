@@ -21,18 +21,22 @@
    display: none;
   }
  }
+
 .container {
+    max-width: 400px;
     width: 400px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+
   }
   @media (max-width: 769px) { 
     .container-register{
       height: 600px;
     }
     .container {
-      width: 370px;
+      max-width: 320px;
+      width: 320px;
       padding: 20px;
       border: 1px solid #ccc;
       border-radius: 5px;

@@ -26,9 +26,13 @@ export class RegistroComponent implements OnInit {
     this.loading=false;
   }
   registrar(){
+    console.log('funciona');
+    
     this.loading=true
     if (!this.formularioRegistrar.valid) {
       this.formularioRegistrar.markAllAsTouched()
+      this.loading=false;
+      alert('LLenar todos los campos por favor.')
       return
     }
         
@@ -61,5 +65,7 @@ export class RegistroComponent implements OnInit {
             this.loading=false;
           },
         )
+
+
   }
 }
