@@ -26,10 +26,10 @@ export class GenerarFacturasComponent {
     DateDue: ['', Validators.required],
     Currency: ['', Validators.required],
     TotalAmount: ['', Validators.required],
-    IdPedidoErp: ['', Validators.required],
+ /*    IdPedidoErp: ['', Validators.required], */
     AzureBlobStorage: ['', Validators.required],
     AzureBlobStorage2: ['', Validators.required],
-    NumberRuc: ['', Validators.required],
+  /*   NumberRuc: ['', Validators.required], */
   })
 
   constructor(
@@ -59,7 +59,7 @@ export class GenerarFacturasComponent {
    //   this.invoiceForm.markAllAsTouched();
    console.log('this.invoiceForm =>',this.invoiceForm);
       this.loading =false;
-      alert('formulario invalido')
+      alert('No puede haber un valor vacio')
       return
     }
     if(!this.copiaDeSearch){
@@ -81,9 +81,13 @@ export class GenerarFacturasComponent {
       formData.append('AzureBlobStorage2', this.selectedFile2)
       formData.append('NumberRuc', this.usuarioRuc.toString())
       setTimeout(() => {
-        this.generarFacturasService.generarFacturas(formData)
-        this.invoiceForm.reset()
-        this.loading=false
+        this.generarFacturasService.generarFacturas(formData).subscribe((data)=>{
+          alert('Generado!')
+          this.invoiceForm.reset()
+          this.loading=false
+          console.log('data !this.copiaDeSearch =>',data);
+        })
+       
       }, 5000);
      }else{
       const formData = new FormData()
@@ -104,13 +108,21 @@ export class GenerarFacturasComponent {
       formData.append('AzureBlobStorage', this.selectedFile)
       formData.append('AzureBlobStorage2', this.selectedFile2)
       formData.append('NumberRuc', this.usuarioRuc.toString())
-      this.visible=false;
-      this.newItemEvent.emit(this.visible)
+     
       setTimeout(() => {
-        this.generarFacturasService.generarFacturas(formData)
+        this.generarFacturasService.generarFacturas(formData).subscribe((data)=> {
+          alert('Generado!')
+
+          console.log('ver data ',data);
+          this.visible=false;
+        this.newItemEvent.emit(this.visible)
         this.invoiceForm.reset()
         this.loading=false
-      }, 5000);
+        }
+          
+          )
+      
+      }, 2000);
      }
 
   }
