@@ -33,7 +33,7 @@
 
         <div class="card flex justify-content-center">
        <!--    <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
-          <p-dialog header="Informacion" [(visible)]="visible" [modal]="true" [style]="{ width: '80vw' }" [draggable]="false" [resizable]="false">
+          <p-dialog header="Informacion" [(visible)]="visible" [modal]="true" [style]="{ width: '90vw' }" [draggable]="false" [resizable]="false">
             <div class="row">
               <ng-container *ngIf="loading2">
                 <app-loading></app-loading>
@@ -51,7 +51,7 @@
               </ng-container>
              
             </div>
-            <div style="display: flex; justify-content: space-around; ">
+            <div class="container-info">
 
               <p-card header="Datos de Factura">
                 <h1>Serie : {{ data2.serie }} - {{ data2.numberInvoice }}</h1>

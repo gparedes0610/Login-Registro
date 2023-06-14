@@ -1,5 +1,7 @@
+<!-- BOTON PARA ABRIR MODAL -->
 <p-button (click)="showDialog()" icon="pi pi-external-link" label="Detalle">
 </p-button>
+
 <p-dialog
   header="Modificar"
   [(visible)]="visible"
@@ -72,6 +74,7 @@
       </div>
       <div class="mb-3">
         <label>AzureBlobStorage:</label>
+        <p><b>Archivo actual :</b> <span class="archivoDescargable" (click)="descargarPdf(item.documentos[0].pathFile)">{{item.documentos[0].pathFile}}</span></p>
         <input
           type="file"
           class="form-control"
@@ -81,6 +84,7 @@
       </div>
       <div class="mb-3">
         <label>AzureBlobStorage2:</label>
+        <p><b>Archivo actual :</b> <span class="archivoDescargable" (click)="descargarXml(item.documentos[1].pathFile)">{{item.documentos[1].pathFile}}</span></p>
         <input
           type="file"
           class="form-control"
@@ -88,12 +92,6 @@
           (change)="onFileSelected2($event)"
         />
       </div>
-     <!--  <div class="mb-3">
-        <label>NumberRuc:</label>
-        <input type="text" class="form-control" formControlName="numberRuc" />
-      </div> -->
-
-<!--       <button type="button" (click)="saveChanges()">Save</button> -->
       <button   type="button" class="btn btn-primary" (click)="saveChanges()">Guardar</button>
     </form>
   </div>

@@ -13,3 +13,16 @@ table {
     border: 1px solid #000;
     border-spacing: 0;
  }
+
+ .container-info{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+ }
+
+ @media (max-width: 990px) { 
+    .container-info{
+       flex-direction: column;
+       align-items: center;
+     }
+  }

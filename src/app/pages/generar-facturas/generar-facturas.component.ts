@@ -9,16 +9,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./generar-facturas.component.css'],
 })
 export class GenerarFacturasComponent {
-  
-  @Input() copiaDeSearch !: string;
-  @Input() visible !: boolean;
+  @Input() copiaDeSearch!: string
+  @Input() visible!: boolean
 
-  @Output() newItemEvent = new EventEmitter<boolean>();
-
+  @Output() newItemEvent = new EventEmitter<boolean>()
 
   ruc: any = localStorage.getItem('usuarioRuc')
   usuarioRuc = JSON.parse(this.ruc)
-  loading =false;
+  loading = false
   invoiceForm: FormGroup = this.fb.group({
     Serie: ['', Validators.required],
     NumberInvoice: ['', Validators.required],
@@ -26,10 +24,10 @@ export class GenerarFacturasComponent {
     DateDue: ['', Validators.required],
     Currency: ['', Validators.required],
     TotalAmount: ['', Validators.required],
- /*    IdPedidoErp: ['', Validators.required], */
+    IdPedidoErp: [''],
     AzureBlobStorage: ['', Validators.required],
     AzureBlobStorage2: ['', Validators.required],
-  /*   NumberRuc: ['', Validators.required], */
+    /*   NumberRuc: ['', Validators.required], */
   })
 
   constructor(
@@ -38,35 +36,34 @@ export class GenerarFacturasComponent {
   ) {}
 
   ngOnInit(): void {
-    console.log('ver copiaDeSearch=>',this.copiaDeSearch)
+    console.log('ver copiaDeSearch=>', this.copiaDeSearch)
   }
-  selectedFile: File = null;
+  selectedFile: File = null
   onFileSelected(event) {
-    this.selectedFile = <File>event.target.files[0];
+    this.selectedFile = <File>event.target.files[0]
     //console.log('a ver =>',  this.selectedFile)
   }
-  selectedFile2: File = null;
+  selectedFile2: File = null
   onFileSelected2(event) {
-    this.selectedFile2 = <File>event.target.files[0];
+    this.selectedFile2 = <File>event.target.files[0]
     //console.log('a ver =>',  this.selectedFile)
   }
-
 
   onSubmit() {
-    this.loading=true
+    this.loading = true
 
-    if (!this.invoiceForm.valid ) {
-   //   this.invoiceForm.markAllAsTouched();
-   console.log('this.invoiceForm =>',this.invoiceForm);
-      this.loading =false;
+    if (!this.invoiceForm.valid) {
+      //   this.invoiceForm.markAllAsTouched();
+      console.log('this.invoiceForm =>', this.invoiceForm)
+      this.loading = false
       alert('No puede haber un valor vacio')
       return
     }
-    if(!this.copiaDeSearch){
+    if (!this.copiaDeSearch) {
       const formData = new FormData()
-  
-    //  const fullPath = this.invoiceForm.get('AzureBlobStorage').value
-    //  const fileName = fullPath.split('\\').pop()
+
+      //  const fullPath = this.invoiceForm.get('AzureBlobStorage').value
+      //  const fileName = fullPath.split('\\').pop()
       formData.append('Serie', this.invoiceForm.get('Serie').value)
       formData.append(
         'NumberInvoice',
@@ -81,20 +78,23 @@ export class GenerarFacturasComponent {
       formData.append('AzureBlobStorage2', this.selectedFile2)
       formData.append('NumberRuc', this.usuarioRuc.toString())
       setTimeout(() => {
-        this.generarFacturasService.generarFacturas(formData).subscribe((data)=>{
-          alert('Generado!')
-          this.invoiceForm.reset()
-          this.loading=false
-          console.log('data !this.copiaDeSearch =>',data);
-        })
-       
-      }, 5000);
-     }else{
+        this.generarFacturasService
+          .generarFacturas(formData)
+          .subscribe((data) => {
+            alert('Generado!')
+            this.invoiceForm.reset()
+            this.loading = false
+            console.log('data !this.copiaDeSearch =>', data)
+          },(err)=>{
+            console.log(err.Message);
+          })
+      }, 5000)
+    } else {
       const formData = new FormData()
-  
-      const fullPath = this.invoiceForm.get('AzureBlobStorage').value
-      const fileName = fullPath.split('\\').pop()
-     // const visibleFalse=false;
+
+      /*    const fullPath = this.invoiceForm.get('AzureBlobStorage').value
+      const fileName = fullPath.split('\\').pop() */
+      // const visibleFalse=false;
       formData.append('Serie', this.invoiceForm.get('Serie').value)
       formData.append(
         'NumberInvoice',
@@ -108,29 +108,26 @@ export class GenerarFacturasComponent {
       formData.append('AzureBlobStorage', this.selectedFile)
       formData.append('AzureBlobStorage2', this.selectedFile2)
       formData.append('NumberRuc', this.usuarioRuc.toString())
-     
+
       setTimeout(() => {
-        this.generarFacturasService.generarFacturas(formData).subscribe((data)=> {
-          alert('Generado!')
-
-          console.log('ver data ',data);
-          this.visible=false;
-        this.newItemEvent.emit(this.visible)
-        this.invoiceForm.reset()
-        this.loading=false
-        }
-          
-          )
-      
-      }, 2000);
-     }
-
+        this.generarFacturasService
+          .generarFacturas(formData)
+          .subscribe((data) => {
+            alert('Generado!')
+            console.log('ver data ', data)
+            this.visible = false
+            this.newItemEvent.emit(this.visible)
+            this.invoiceForm.reset()
+            this.loading = false
+          },(err)=>{
+            console.log(err.Message);
+          })
+      }, 2000)
+    }
   }
 
-  cancelar(){
-    this.visible=false;
+  cancelar() {
+    this.visible = false
     this.newItemEvent.emit(this.visible)
   }
-
-
 }

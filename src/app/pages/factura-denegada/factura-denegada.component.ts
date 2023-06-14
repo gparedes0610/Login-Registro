@@ -1,7 +1,8 @@
 import { FacturasDenegadasService } from './../../services/facturas-denegadas.service'
 import { Component, OnInit, Input } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { ActivatedRoute } from '@angular/router'
+import { saveAs } from 'file-saver';
+import { GenerarDescargasService } from 'src/app/services/generar-descargas.service'
 
 @Component({
   selector: 'app-factura-denegada',
@@ -10,16 +11,9 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class FacturaDenegadaComponent implements OnInit {
   @Input('item') item!: any
- 
+
   ruc: any = localStorage.getItem('usuarioRuc')
   usuarioRuc = JSON.parse(this.ruc)
-  /*  serie: string
-  numberInvoice: string
-  dateInvoice: Date
-  currency: string
-  totalAmount: number
-  idpedidoErp: string
-  numberRuc: number */
   visible: boolean
 
   myForm: FormGroup = this.fb.group({
@@ -77,28 +71,58 @@ export class FacturaDenegadaComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private facturasDenegadasService: FacturasDenegadasService,
+    private generarDescargasService: GenerarDescargasService,
   ) {}
 
   saveChanges() {
     // Actualizar los campos del objeto invoice con los valores del formulario
-    console.log('ver form ->',this.myForm.value.serie);
+    console.log('ver form ->', this.myForm.value.serie)
 
     const formData = new FormData()
 
     formData.append('Serie', this.myForm.value.serie)
-     formData.append('NumberInvoice', this.myForm.value.numberInvoice)
+    formData.append('NumberInvoice', this.myForm.value.numberInvoice)
     formData.append('DateInvoice', this.myForm.value.dateInvoice)
-   formData.append('DateDue', this.myForm.value.dateDue)
+    formData.append('DateDue', this.myForm.value.dateDue)
     formData.append('Currency', this.myForm.value.currency)
     formData.append('TotalAmount', this.myForm.value.totalAmount)
-   formData.append('IdPedidoErp', this.myForm.value.idpedidoErp)
+    formData.append('IdPedidoErp', this.myForm.value.idpedidoErp)
     formData.append('AzureBlobStorage', this.selectedFile)
     formData.append('AzureBlobStorage2', this.selectedFile2)
-    formData.append('NumberRuc', this.usuarioRuc.toString()) 
-    formData.append('idInvoice', this.item.idInvoice) 
+    formData.append('NumberRuc', this.usuarioRuc.toString())
+    formData.append('idInvoice', this.item.idInvoice)
 
-     console.log('formData =>',formData);
+    console.log('formData =>', formData)
     this.facturasDenegadasService.actualizarFactura(formData)
     this.visible = false
   }
+
+
+  descargarXml(nombre:string) {
+
+    const options = {
+      responseType: 'blob' as 'json' // Especificamos el tipo de respuesta como blob
+    };
+      this.generarDescargasService.descargarPdfs(nombre, options)
+      .subscribe((res: any) => {
+        const blob = new Blob([res], { type: 'application/pdf' });
+        saveAs(blob, `${nombre}`);
+      }, (error: any) => {
+        console.error('Error al descargar el archivo', error);
+      });
+  }
+  descargarPdf(nombre:string) {
+
+    const options = {
+      responseType: 'blob' as 'json' // Especificamos el tipo de respuesta como blob
+    };
+      this.generarDescargasService.descargarPdfs(nombre, options)
+      .subscribe((res: any) => {
+        const blob = new Blob([res], { type: 'application/pdf' });
+        saveAs(blob, `${nombre}`);
+      }, (error: any) => {
+        console.error('Error al descargar el archivo', error);
+      });
+
+  } 
 }

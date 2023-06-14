@@ -11,14 +11,14 @@
         <input type="text" class="form-control"
         formControlName="Serie"
         >
-        <span
+     <!--    <span
         class="text-danger"
         *ngIf="
         invoiceForm.controls['Serie'].errors &&
         invoiceForm.controls['Serie'].touched
         "
         >Por favor llenar Serie</span
-      >
+      > -->
       </div>
     
       <div class="form-group">
@@ -26,14 +26,14 @@
         <input type="text" class="form-control"
         formControlName="NumberInvoice"
         >
-        <span
+     <!--    <span
         class="text-danger"
         *ngIf="
         invoiceForm.controls['NumberInvoice'].errors &&
         invoiceForm.controls['NumberInvoice'].touched
         "
         >Por favor llenar NumberInvoice</span
-      >
+      > -->
       </div>
     
     
@@ -42,14 +42,14 @@
         <input type="date" class="form-control"
         formControlName="DateInvoice"
         >
-        <span
+     <!--    <span
         class="text-danger"
         *ngIf="
         invoiceForm.controls['DateInvoice'].errors &&
         invoiceForm.controls['DateInvoice'].touched
         "
         >Por favor llenar DateInvoice</span
-      >
+      > -->
       </div>
     
       <div class="form-group">
@@ -57,14 +57,14 @@
         <input type="date" class="form-control"
         formControlName="DateDue"
         >
-        <span
+      <!--   <span
         class="text-danger"
         *ngIf="
         invoiceForm.controls['DateDue'].errors &&
         invoiceForm.controls['DateDue'].touched
         "
         >Por favor llenar DateDue</span
-      >
+      > -->
       </div>
     
       <div class="form-group">
@@ -78,14 +78,14 @@
        <!--  <input type="text" class="form-control"
         formControlName="Currency"
         > -->
-        <span
+    <!--     <span
         class="text-danger"
         *ngIf="
         invoiceForm.controls['Currency'].errors &&
         invoiceForm.controls['Currency'].touched
         "
         >Por favor llenar Currency</span
-      >
+      > -->
       </div>
     
       <div class="form-group">
@@ -93,14 +93,14 @@
         <input type="text" class="form-control"
         formControlName="TotalAmount"
         >
-        <span
+      <!--   <span
         class="text-danger"
         *ngIf="
         invoiceForm.controls['TotalAmount'].errors &&
         invoiceForm.controls['TotalAmount'].touched
         "
         >Por favor llenar TotalAmount</span
-      >
+      > -->
       </div>
       <ng-container *ngIf="!copiaDeSearch">
         <div class="form-group">
@@ -108,14 +108,14 @@
           <input type="text" class="form-control"
           formControlName="IdPedidoErp"
           >
-          <span
+        <!--   <span
           class="text-danger"
           *ngIf="
           invoiceForm.controls['IdPedidoErp'].errors &&
           invoiceForm.controls['IdPedidoErp'].touched
           "
           >Por favor llenar IdPedidoErp</span
-        >
+        > -->
         </div>
       </ng-container>
      
@@ -126,14 +126,14 @@
         formControlName="AzureBlobStorage"
         (change)="onFileSelected($event)"
         >
-        <span
+       <!--  <span
         class="text-danger"
         *ngIf="
         invoiceForm.controls['AzureBlobStorage'].errors &&
         invoiceForm.controls['AzureBlobStorage'].touched
         "
         >Por favor llenar AzureBlobStorage</span
-      >
+      > -->
       </div>
   
       <div class="form-group">
@@ -142,14 +142,14 @@
         formControlName="AzureBlobStorage2"
         (change)="onFileSelected2($event)"
         >
-        <span
+       <!--  <span
         class="text-danger"
         *ngIf="
         invoiceForm.controls['AzureBlobStorage2'].errors &&
         invoiceForm.controls['AzureBlobStorage2'].touched
         "
         >Por favor llenar AzureBlobStorage</span
-      >
+      > -->
       </div>
 
       <!-- <div class="form-group d-none">
