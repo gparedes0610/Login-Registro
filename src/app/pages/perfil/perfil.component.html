@@ -90,7 +90,7 @@
 
 <div class="container container-perfil">
 
-  <ng-container *ngIf="usuarioFlag=='Logistica'">
+  <ng-container *ngIf="usuarioFlag=='Jefe de Almacen'">
     <div class="card-group">
       <div class="card" [routerLink]="['/dashboard/generarFacturasLogistica']">
         <i class='bx bxs-pencil'></i>
@@ -98,7 +98,7 @@
       </div> 
   </div>
   </ng-container>
-  <ng-container *ngIf="usuarioFlag!=='Logistica'">
+  <ng-container *ngIf="usuarioFlag!=='Jefe de Almacen'">
   
     <div class="card-group">
 

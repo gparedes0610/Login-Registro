@@ -37,6 +37,7 @@ export class GenerarFacturarLogisticaComponent implements OnInit{
   data2: any = {}
   dataPdf: any = {}
   dataXml: any = {}
+  idInvoiceDatosDeFactura:number = 0
   mostrar = false
   ingredient: string
   idComprobante: any
@@ -75,7 +76,8 @@ export class GenerarFacturarLogisticaComponent implements OnInit{
       .subscribe(
         (result: any) => {
           this.data2 = result
-         // console.log('result =>',result);
+          console.log('result total =>',result);
+          this.idInvoiceDatosDeFactura = result.idInvoice
           //this.data = result
           //console.log('documentos =>', this.data2.documentos[0])
           //console.log('documentos 2 =>', this.data2.documentos[1])
@@ -147,6 +149,7 @@ export class GenerarFacturarLogisticaComponent implements OnInit{
       (data) => {
         // console.log('ver data =>', data)
         //this.idComprobante=data;
+        console.log('enviarActualizacionDeFactura =>',data);
         this.enviarNuevoRecepcionFacturas(data)
         this.enviarDocuments(data)
         this.loading2 = false
@@ -205,7 +208,7 @@ export class GenerarFacturarLogisticaComponent implements OnInit{
     const nuevaDta =  {
         nameFilePdf: this.dataPdf.pathFile,
         nameFilexml: this.dataXml.pathFile,
-        idorigen: id.idComprobante // viene del ip de una de las 3 apis
+        idorigen: this.idInvoiceDatosDeFactura // viene del ip de una de las 3 apis
       }
    // console.log('ver nuevaDta =>',nuevaDta);
     this.actualizarFacturaService.documents(nuevaDta).subscribe((result)=>{
