@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
   //  console.log('ver useron',this.userOn)
   
   if(this.userOn){
-    if(this.usuarioFlag=='Logistica'){
+    if(this.usuarioFlag=='Jefe de Almacen'){
       this.items = [
         {
             label: 'Acciones',
@@ -33,7 +33,8 @@ export class NavbarComponent implements OnInit {
             },
                 {
                   label: 'Factura Logistica',
-                  icon: 'pi pi-fw pi-bookmark'
+                  icon: 'pi pi-fw pi-bookmark',
+                  command: () => this.router.navigate(['/dashboard/generarFacturasLogistica'])
               },
                 {
                     separator: true
