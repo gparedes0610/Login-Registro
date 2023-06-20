@@ -121,6 +121,8 @@ export class GenerarFacturasComponent {
             this.loading = false
           },(err)=>{
             console.log(err.Message);
+            this.loading = false
+            alert(err.Message)
           })
       }, 2000)
     }

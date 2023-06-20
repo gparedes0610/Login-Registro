@@ -20,10 +20,7 @@ export class ConsultarPedidosComponent implements OnInit {
   showDialog() {
     this.visible = true
   }
-  funcionEjm(valor:any){
-    console.log('ver valor',valor)
-    this.visible=valor
-  }
+  
 
   loading = false
   data = []
@@ -34,6 +31,12 @@ export class ConsultarPedidosComponent implements OnInit {
   usuarioRuc = JSON.parse(this.ruc)
 
   dataPedidos: any[]
+
+  funcionEjm(valor:any){
+    console.log('ver valor',valor)
+    this.visible=valor
+    this.data=[]
+  }
   constructor(private consultarPedidosService: ConsultarPedidosService) {}
 
   ngOnInit(): void {}
