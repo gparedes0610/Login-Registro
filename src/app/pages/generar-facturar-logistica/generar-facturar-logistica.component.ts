@@ -15,7 +15,14 @@ import Swal from 'sweetalert2'
 export class GenerarFacturarLogisticaComponent implements OnInit{
 
 
-  items: [];
+/*   HEROES = [
+    {id: 1, name:'Superman'},
+    {id: 2, name:'Batman'},
+    {id: 5, name:'BatGirl'},
+    {id: 3, name:'Robin'},
+    {id: 4, name:'Flash'}
+]; */
+ 
   totalRecords: number;
   rowsPerPage: number;
 
@@ -43,7 +50,7 @@ export class GenerarFacturarLogisticaComponent implements OnInit{
   idComprobante: any
 
   listadoData =[]
-
+  items=[];
   constructor(
     private generarFacturaLogisticaService: GenerarFacturaLogisticaService,
     private actualizarFacturaService: ActualizarFacturaService,
@@ -53,15 +60,22 @@ export class GenerarFacturarLogisticaComponent implements OnInit{
 
 
   ngOnInit(): void {
+    this.cargarFacturasLogisticas()
+  }
+
+  cargarFacturasLogisticas(){
     this.generarFacturaLogisticaService.consultarListado().subscribe((result:any)=>{
       this.items =result
+      console.log('results =>',result);
+      console.log('this.items  =>',this.items );
       this.totalRecords = this.items.length;
       this.rowsPerPage = 5;
     })
   }
 
-  search(valor1:any,valor2:any) {
-    console.log('valor 1 y 2',valor1,valor2);
+  search(valor1:any,valor2:any,index:number) {
+   // console.log('valor 1 y 2',valor1,valor2);
+    console.log('indice',index);
     this.showDialog()
 
     this.loading = true
@@ -76,7 +90,7 @@ export class GenerarFacturarLogisticaComponent implements OnInit{
       .subscribe(
         (result: any) => {
           this.data2 = result
-          console.log('result total =>',result);
+         // console.log('result total =>',result);
           this.idInvoiceDatosDeFactura = result.idInvoice
           //this.data = result
           //console.log('documentos =>', this.data2.documentos[0])
@@ -152,6 +166,9 @@ export class GenerarFacturarLogisticaComponent implements OnInit{
         console.log('enviarActualizacionDeFactura =>',data);
         this.enviarNuevoRecepcionFacturas(data)
         this.enviarDocuments(data)
+       setTimeout(() => {
+        this.cargarFacturasLogisticas()
+       }, 2500);
         this.loading2 = false
         this.mostrar=false;
       },
@@ -208,7 +225,8 @@ export class GenerarFacturarLogisticaComponent implements OnInit{
     const nuevaDta =  {
         nameFilePdf: this.dataPdf.pathFile,
         nameFilexml: this.dataXml.pathFile,
-        idorigen: this.idInvoiceDatosDeFactura // viene del ip de una de las 3 apis
+        idorigenIdInvoice: this.idInvoiceDatosDeFactura, // viene del ip de una de las 3 apis
+        idorigenIdComprobante:id.idComprobante
       }
    // console.log('ver nuevaDta =>',nuevaDta);
     this.actualizarFacturaService.documents(nuevaDta).subscribe((result)=>{
