@@ -14,15 +14,6 @@ import Swal from 'sweetalert2'
 })
 export class GenerarFacturarLogisticaComponent implements OnInit{
 
-
-/*   HEROES = [
-    {id: 1, name:'Superman'},
-    {id: 2, name:'Batman'},
-    {id: 5, name:'BatGirl'},
-    {id: 3, name:'Robin'},
-    {id: 4, name:'Flash'}
-]; */
- 
   totalRecords: number;
   rowsPerPage: number;
 
@@ -124,6 +115,7 @@ export class GenerarFacturarLogisticaComponent implements OnInit{
           this.searchTerm = ''
           this.searchTerm2 = ''
           this.data = result
+          console.log('data =>',this.data);
         },
         (err) => {
           Swal.fire({
